@@ -1,0 +1,86 @@
+<div class="lesson-block">
+    <h3>Lesson 1: Control Flow Overview: Decisions vs. Repetition</h3>
+    <p>Control flow allows your program to make choices or perform repetitive actions. <strong>Selection</strong> (if/else) chooses a specific path based on a condition, while <strong>Repetition</strong> (loops) repeats code blocks multiple times[cite: 5].</p>
+    <details class="more-info">
+        <summary>Selection vs. Repetition: A Quick Cheat Sheet</summary>
+        <p>Think of <strong>Selection</strong> as an "If this, then that" branching path in your code. Think of <strong>Repetition</strong> (loops) as a "Do this until finished" conveyor belt. You use selection to route the program flow, and repetition to process items in bulk.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 2: If/else: Syntax, Indentation, and Mental Model</h3>
+    <p>Python uses indentation to group code blocks under conditions. Every <code>if</code> and <code>else</code> statement must end with a colon (<code>:</code>), and the code following them must be indented[cite: 5].</p>
+    <details class="more-info">
+        <summary>Why does Python force indentation?</summary>
+        <p>In many other languages, blocks are defined by curly braces <code>{}</code>. Python uses indentation instead because it makes the code look exactly like it behaves: the code inside an <code>if</code> block visually "belongs" to that condition because it is physically moved to the right.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 3: Logical Operators: and/or/not</h3>
+    <p>Logical operators allow for complex conditional checks. <code>and</code> requires all conditions to be true, <code>or</code> requires only one to be true, and <code>not</code> flips a boolean result[cite: 5]. Python uses <strong>short-circuiting</strong> to skip unnecessary checks if the final result is already determined[cite: 5].</p>
+    <details class="more-info">
+        <summary>What exactly is 'short-circuiting'?</summary>
+        <p>Short-circuiting is an optimization. For example, in an <code>A and B</code> check, if <code>A</code> is already <code>False</code>, Python knows the whole statement must be <code>False</code>, so it doesn't even bother looking at <code>B</code>. This saves processing time and can prevent errors if <code>B</code> would have caused a crash.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 4: Booleans and Comparisons</h3>
+    <p>Booleans are values that are either <code>True</code> or <code>False</code>. When comparing, always use <code>==</code> for checking equality and <code>=</code> for variable assignment. While <code>is</code> checks if two objects are the same in memory, <code>==</code> is the preferred operator for comparing values[cite: 5].</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 5: String Membership with 'in'</h3>
+    <p>The <code>in</code> operator checks if a substring exists within a larger string, returning a boolean. It is highly useful for checking user input or filtering text[cite: 5].</p>
+    <details class="more-info">
+        <summary>Wait, is 'in' case-sensitive?</summary>
+        <p>Yes, <code>in</code> is case-sensitive! <code>"P" in "python"</code> would be <code>False</code> because the lowercase <code>"p"</code> does not match the uppercase <code>"P"</code>. If you need to check regardless of case, convert both strings to lowercase first using <code>.lower()</code>.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 6: Elif and Refactoring</h3>
+    <p>Use <code>if/elif/else</code> chains to flatten nested decision logic. Python processes these branches from top to bottom and runs only the <em>first</em> block that evaluates to <code>True</code>[cite: 5].</p>
+    <details class="more-info">
+        <summary>Why order matters in 'if/elif'</summary>
+        <p>Python evaluates <code>if/elif</code> chains from top to bottom. It stops and runs the very first branch that evaluates to <code>True</code>. If you put a broad condition (like <code>score >= 60</code>) before a specific one (like <code>score >= 90</code>), the specific one will <em>never</em> run because the broad condition "catches" it first.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 7: Decision Tables</h3>
+    <p>Decision tables are a structured way to lay out conditions, ensuring logic is both <strong>complete</strong> (all cases covered) and <strong>mutually exclusive</strong> (no overlap between conditions)[cite: 5].</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 8: For Loops and range()</h3>
+    <p>The <code>range()</code> function generates a sequence of numbers. <code>range(start, stop, step)</code> is the standard pattern, where the <code>stop</code> value is exclusive[cite: 5].</p>
+    <details class="more-info">
+        <summary>The 'Stop' value rule</summary>
+        <p>The <code>stop</code> value in <code>range()</code> is always exclusive, meaning the loop stops *before* it reaches that number. This is a common pattern in computer science because it makes calculating the total number of iterations easy: <code>range(start, stop)</code> will always run <code>stop - start</code> times.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 9: The While Loop</h3>
+    <p>Use a <code>for</code> loop when you know the number of iterations; use a <code>while</code> loop when you want to repeat until a specific condition changes[cite: 5]. Always ensure the loop variable changes inside the block to avoid an infinite loop[cite: 5].</p>
+    <details class="more-info">
+        <summary>How to kill an infinite loop</summary>
+        <p>If you accidentally write a <code>while</code> loop that never ends (an infinite loop), your console will hang or print endlessly. In most code editors, you can press <strong>Ctrl + C</strong> to force the program to stop and kill the process.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 10: Loop Control (Break/Continue)</h3>
+    <p><code>break</code> exits a loop entirely, while <code>continue</code> skips the remaining code in the current iteration and jumps to the next cycle[cite: 5].</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 11: Counters and Totals</h3>
+    <p>A counter tracks "how many" times an action occurs; a total accumulates values. Always initialize these variables (e.g., <code>total = 0</code>) <em>before</em> the loop starts to ensure they maintain their value across iterations[cite: 5].</p>
+    <details class="more-info">
+        <summary>Why initialize variables outside the loop?</summary>
+        <p>If you put <code>total = 0</code> <em>inside</em> the loop, it resets to zero every single time the loop repeats. You would lose all your previous work! Initializing outside ensures the variable acts as a persistent container that survives across every iteration of the loop.</p>
+    </details>
+</div>
