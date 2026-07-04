@@ -14,6 +14,11 @@
     </ul>
 </div>
 
+<details class="more-info">
+    <summary>Why is 'NameError' so common?</summary>
+    <p>A NameError usually happens because of a typo in the variable name, or because you are trying to use a variable before assigning it a value. Always double-check your spelling and ensure the variable is defined above the line where it is first used.</p>
+</details>
+
 <div class="lesson-block">
     <h3>Lesson 3: Expressions and Operator Precedence</h3>
     <p>Python follows standard math order of operations (PEMDAS). Multiplication and division happen before addition and subtraction. You can override this by grouping operations with parentheses <code>()</code>.</p>
@@ -45,6 +50,11 @@
     </ul>
 </div>
 
+<details class="more-info">
+    <summary>When exactly should I use Modulo (%)?</summary>
+    <p>Modulo is your go-to operator for any problem involving cycles or patterns. It’s perfect for determining if a number is even or odd (<code>n % 2</code>), cycling through game turns, or finding out if a year is a leap year.</p>
+</details>
+
 <div class="lesson-block">
     <h3>Lesson 7: Modulo in Practice</h3>
     <p>Modulo is highly useful for determining cycles or checking if a number is even or odd:</p>
@@ -62,6 +72,11 @@
         <li><strong><code>f"${value:.2f}"</code>:</strong> Changes only the <em>display</em> of the value to two decimal places, leaving the underlying float untouched.</li>
     </ul>
 </div>
+
+<details class="more-info">
+    <summary>round() vs. f-string formatting</summary>
+    <p>Use <code>round()</code> if you need to perform more math with the result, because it changes the value itself. Use <code>:.2f</code> inside an f-string only if you just want the output to <em>look</em> like currency for the user, while keeping the full-precision number for other calculations.</p>
+</details>
 
 <div class="lesson-block">
     <h3>Lesson 9: Getting Input from Users</h3>
@@ -84,10 +99,20 @@
     </ul>
 </div>
 
+<details class="more-info">
+    <summary>Is 'return' mandatory?</summary>
+    <p>Technically, no. If a function doesn't have a <code>return</code> statement, Python automatically returns <code>None</code>. However, if you want your function to provide a result that your program can store or use later, you <em>must</em> use <code>return</code>.</p>
+</details>
+
 <div class="lesson-block">
     <h3>Lesson 13: Scope and Local Variables</h3>
     <p>Variables created inside a function are <strong>local</strong>; they only exist inside that specific function and do not overwrite variables with the same name outside the function. Passing data via parameters is much safer than relying on or altering global variables.</p>
 </div>
+
+<details class="more-info">
+    <summary>Why avoid global variables?</summary>
+    <p>Global variables can be changed from anywhere, making it very hard to debug when something goes wrong. Local variables (inside functions) are "contained"—the function is like a self-contained machine that you feed inputs (parameters) to, and get results back from.</p>
+</details>
 
 <div class="lesson-block">
     <h3>Lesson 14: Python Errors & Tracebacks</h3>
@@ -108,3 +133,8 @@
         <li>Remove or comment out the debug <code>print()</code> statements to clean up the final output.</li>
     </ol>
 </div>
+
+<details class="more-info">
+    <summary>Pro-tip: Printing vs. Debugger</summary>
+    <p>While <code>print()</code> tracing is great for beginners, professional IDEs like PyCharm have a built-in "Debugger" that lets you pause your code mid-execution to inspect the values of all variables at once without adding any extra print lines!</p>
+</details>
