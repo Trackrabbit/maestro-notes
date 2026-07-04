@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maestro Notes | PC100</title>
+    <title>Maestro Notes</title>
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -18,9 +18,23 @@
             <h2>Modules</h2>
             <nav>
                 <ul class="nav-list">
-                    <li><a href="#" class="active">Pre-course - PC100</a></li>
-                    <!-- Future weeks will go here -->
-                    <!-- <li><a href="week1.html">Week 1</a></li> -->
+                    <li class="course-group">
+                        <span class="course-title">PC100 - Pre-course</span>
+                        <ul class="week-list">
+                            <li><a href="#" class="active" data-content="pc100/week1.html" data-pdf="pc100/week1.pdf" data-title="PC100: Week 1">Week 1</a></li>
+                            <!-- Future weeks: <li><a href="#" data-content="pc100/week2.html" ...>Week 2</a></li> -->
+                        </ul>
+                    </li>
+                    
+                    <!-- Future Course Group -->
+                    <!-- 
+                    <li class="course-group">
+                        <span class="course-title">PY101 - Intro</span>
+                        <ul class="week-list">
+                            <li><a href="#" data-content="py101/week1.html" data-pdf="py101/week1.pdf" data-title="PY101: Week 1">Week 1</a></li>
+                        </ul>
+                    </li> 
+                    -->
                 </ul>
             </nav>
         </aside>
@@ -28,23 +42,15 @@
         <!-- Main Content Area -->
         <main class="content-area">
             <div class="content-header">
-                <h2>Pre-course - PC100: Writing Your First Program</h2>
+                <h2 id="dynamic-title">PC100: Week 1</h2>
                 <!-- Download Button -->
-                <a href="assets/PC100_Module_Notes.pdf" download="PC100_Module_Notes.pdf" class="btn-download">
+                <a href="assets/pc100/week1.pdf" download id="dynamic-download" class="btn-download">
                     Download as PDF
                 </a>
             </div>
             
             <div class="notes-container" id="notes-content">
-                <!-- We will inject the HTML notes content here -->
-                <h3>Lesson 1: Writing Your First Program</h3>
-                <p>The code editor consists of a top panel (for writing code) and a bottom panel (the console, for viewing output). To display a message on the screen, use the <code>print()</code> function.</p>
-                
-                <div class="code-block">print("Hello World")</div>
-                
-                <div class="output-block">Hello World</div>
-                <hr>
-                <p><em>(The rest of the PC100 notes will populate here)</em></p>
+                <p>Loading content...</p>
             </div>
         </main>
     </div>
