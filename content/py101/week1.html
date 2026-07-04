@@ -1,0 +1,110 @@
+<div class="lesson-block">
+    <h3>Lesson 1: Recap: Printing and Comments</h3>
+    <p>The <code>print()</code> function outputs text to the console, automatically adding a space between items separated by commas and a newline at the end. Use <code>#</code> to add single-line comments that Python will ignore.</p>
+    <div class="code-block">print("age:", 25)<br># Output: age: 25</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 2: Variables, Types, and Strings</h3>
+    <p>Variables store data and their values can be reassigned. Use <code>type()</code> to identify if a value is an <code>int</code>, <code>float</code>, or <code>str</code>.</p>
+    <ul>
+        <li><strong>TypeError:</strong> Occurs if you try to mathematically add a string and a number directly.</li>
+        <li><strong>NameError:</strong> Occurs if you try to use a variable before defining it.</li>
+        <li><strong>f-strings:</strong> The cleanest way to mix variables and text (e.g., <code>f"{name} scored {score}%"</code>).</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 3: Expressions and Operator Precedence</h3>
+    <p>Python follows standard math order of operations (PEMDAS). Multiplication and division happen before addition and subtraction. You can override this by grouping operations with parentheses <code>()</code>.</p>
+    <div class="code-block">print(2 + 3 * 4)   # Output: 14<br>print((2 + 3) * 4) # Output: 20</div>
+    <p><em>Note:</em> Division (<code>/</code>) in Python always returns a float (e.g., <code>6 / 2</code> results in <code>3.0</code>).</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 4: Updating Values and Printing Expressions</h3>
+    <p>Use shortcut operators to efficiently update variable values:</p>
+    <ul>
+        <li><code>+=</code> adds to the current value (e.g., <code>count += 3</code> is the same as <code>count = count + 3</code>).</li>
+        <li><code>-=</code> subtracts from the current value.</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 5: Modeling Real-World Calculations</h3>
+    <p>Using named variables makes math calculations much clearer than using raw numbers. Proper naming conventions help explain <em>why</em> a calculation is taking place (e.g., <code>join_fee + monthly_total</code> is clearer than <code>25 + 90</code>).</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 6: Division Modes (/, //, %)</h3>
+    <p>Python has three distinct ways to handle division:</p>
+    <ul>
+        <li><strong>True Division (<code>/</code>):</strong> Returns a float with decimals (e.g., <code>7 / 2 = 3.5</code>).</li>
+        <li><strong>Floor Division (<code>//</code>):</strong> Drops the decimal and returns just the whole number/integer (e.g., <code>7 // 2 = 3</code>).</li>
+        <li><strong>Modulo (<code>%</code>):</strong> Returns only the <em>remainder</em> of the division (e.g., <code>7 % 2 = 1</code>).</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 7: Modulo in Practice</h3>
+    <p>Modulo is highly useful for determining cycles or checking if a number is even or odd:</p>
+    <ul>
+        <li><strong>Parity:</strong> <code>n % 2</code> will always return <code>0</code> for even numbers and <code>1</code> for odd numbers.</li>
+        <li><strong>Cycles:</strong> Modulo can determine positions in repeating sequences (e.g., <code>turn % total_players</code>).</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 8: Rounding and Money Format</h3>
+    <p>When working with currency, you often need exactly two decimal places.</p>
+    <ul>
+        <li><strong><code>round(value, 2)</code>:</strong> Mathematically changes the actual underlying value to two decimal places.</li>
+        <li><strong><code>f"${value:.2f}"</code>:</strong> Changes only the <em>display</em> of the value to two decimal places, leaving the underlying float untouched.</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 9: Getting Input from Users</h3>
+    <p>The <code>input()</code> function pauses the script to wait for the user to type something. <strong>Important:</strong> Data collected via <code>input()</code> is <em>always</em> a string. You must cast it to perform math.</p>
+    <div class="code-block">age_txt = input("Age? ")<br>age = int(age_txt) + 1</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 10: Functions I - Define and Call</h3>
+    <p>Functions group code into reusable blocks, preventing repetition. Define a function using the <code>def</code> keyword, followed by a name, parentheses (which hold optional parameters), and a colon <code>:</code>. The code inside must be indented.</p>
+    <div class="code-block">def greet(name):<br>    print(f"Hello, {name}!")<br><br>greet("Adam")</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lessons 11 & 12: Functions II & III - Inside the Function & Return</h3>
+    <p>The <code>return</code> keyword is used to send a value back out of a function to be used later in the program. </p>
+    <ul>
+        <li><strong>Print vs. Return:</strong> <code>print()</code> just displays text on the screen. <code>return</code> hands data back to the script.</li>
+        <li><strong>Early Exit:</strong> A function stops executing immediately after hitting a <code>return</code> statement. Any code below it inside the function is ignored.</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 13: Scope and Local Variables</h3>
+    <p>Variables created inside a function are <strong>local</strong>; they only exist inside that specific function and do not overwrite variables with the same name outside the function. Passing data via parameters is much safer than relying on or altering global variables.</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 14: Python Errors & Tracebacks</h3>
+    <p>A traceback is Python's way of telling you what went wrong. It shows the file, line number, and the specific error type at the very bottom.</p>
+    <ul>
+        <li><strong>TypeError:</strong> e.g., combining a string and an integer.</li>
+        <li><strong>NameError:</strong> e.g., printing a variable that hasn't been assigned yet.</li>
+        <li><strong>ValueError:</strong> e.g., trying to run <code>int("apple")</code>.</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 15: Introduction to Debugging</h3>
+    <p>A "logic bug" occurs when the code runs without error messages but produces the wrong result. The standard debugging process:</p>
+    <ol>
+        <li>Inject <code>print()</code> statements inside functions to trace variable values.</li>
+        <li>Identify where the logic goes wrong.</li>
+        <li>Remove or comment out the debug <code>print()</code> statements to clean up the final output.</li>
+    </ol>
+</div>
