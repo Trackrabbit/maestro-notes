@@ -216,3 +216,47 @@ body {
     font-size: 0.9rem;
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
+
+/* --- Expandable "Read More" Sections --- */
+.more-info {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin: 20px 0;
+    transition: all 0.2s ease;
+}
+
+.more-info:hover {
+    border-color: var(--accent-color);
+}
+
+.more-info summary {
+    font-weight: 600;
+    color: var(--accent-color);
+    cursor: pointer;
+    list-style: none; /* Hides default triangle */
+    display: flex;
+    align-items: center;
+}
+
+/* Custom arrow icon for the summary */
+.more-info summary::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 0.7rem;
+    transition: transform 0.2s;
+}
+
+.more-info[open] summary::before {
+    transform: rotate(90deg);
+}
+
+.more-info p {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    padding-left: 20px;
+    border-left: 2px solid var(--border-light);
+}
