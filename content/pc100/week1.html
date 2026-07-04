@@ -1,1 +1,112 @@
+<div class="lesson-block">
+    <h3>Lesson 1: Writing Your First Program</h3>
+    <p>The code editor consists of a top panel (for writing code) and a bottom panel (the console, for viewing output). To display a message on the screen, use the <code>print()</code> function.</p>
+    <div class="code-block">print("Hello World")</div>
+    <p><span class="highlight">Output:</span> <code>Hello World</code></p>
+    <p>In Python, quotation marks denote text (a <strong>string</strong>). The <code>print()</code> function removes the quotes when outputting the text.</p>
+</div>
 
+<div class="lesson-block">
+    <h3>Lesson 2: Unlocking print() Power-Ups</h3>
+    <p>The <code>print()</code> function has several built-in behaviors that make formatting output easier:</p>
+    <ul>
+        <li><strong>Multiple Items:</strong> Separate items with a comma to print them with an automatic space. <br><code>print("red", "blue")</code> &rarr; <code>red blue</code></li>
+        <li><strong>New Lines:</strong> Every individual <code>print()</code> statement automatically starts on a new line.</li>
+        <li><strong>Math inside print:</strong> Python evaluates math before printing. <br><code>print(2 + 3)</code> &rarr; <code>5</code></li>
+        <li><strong>Concatenation (+):</strong> Glues strings together <em>without</em> spaces. <br><code>print("ice" + "cream")</code> &rarr; <code>icecream</code></li>
+        <li><strong>Repetition (*):</strong> Repeats a string multiple times. <br><code>print("ha" * 3)</code> &rarr; <code>hahaha</code></li>
+    </ul>
+    <p><em>Note:</em> You cannot combine text and numbers using the <code>+</code> sign (this causes an error). Use a comma instead: <code>print("Answer:", 42)</code>.</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 3: Creating Art with Code</h3>
+    <p>You can use keyboard symbols (ASCII characters) to draw shapes and pictures in the console. When creating ASCII art, spaces are just as important as the symbols to create the correct layout.</p>
+    <div class="code-block">print(" * * * ")<br>print("#######")</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 4: Introduction to Variables</h3>
+    <p>A variable is a labeled box in computer memory used to store data. You use the <code>=</code> sign to assign a value to a variable.</p>
+    <div class="code-block">greeting = "hello"<br>print(greeting)</div>
+    <p><span class="highlight">Variable Naming Rules:</span></p>
+    <ul>
+        <li>Use only letters, numbers, or underscores (<code>_</code>).</li>
+        <li>Cannot start with a number.</li>
+        <li>No spaces allowed.</li>
+        <li>Case-sensitive (<code>Name</code> is different from <code>name</code>).</li>
+        <li>Cannot use Python reserved keywords (like <code>class</code>, <code>if</code>, <code>print</code>).</li>
+    </ul>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 5: Working with Text</h3>
+    <p>Information stored in a computer has a specific <strong>data type</strong>. Text is referred to as a <strong>string</strong> (or <code>str</code>). Strings must be wrapped in either single quotes (<code>' '</code>) or double quotes (<code>" "</code>), but the beginning and ending quotes must match.</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 6: Working with Numbers</h3>
+    <p>Python treats numbers differently than text. <code>5</code> is a number, while <code>"5"</code> is a string. There are two primary number buckets:</p>
+    <ul>
+        <li><strong>Integer (<code>int</code>):</strong> Whole numbers (e.g., 7, -3, 42).</li>
+        <li><strong>Float (<code>float</code>):</strong> Decimal numbers (e.g., 7.5, 3.14).</li>
+    </ul>
+    <p>Math operators include <code>+</code> (add), <code>-</code> (subtract), <code>*</code> (multiply), and <code>/</code> (divide). <em>Note:</em> Division in Python always returns a float, even if it divides evenly (e.g., <code>10 / 2</code> results in <code>5.0</code>).</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 7: Checking the Facts (Data Types)</h3>
+    <p>To reveal the specific category (data type) of a value, use the <code>type()</code> function.</p>
+    <div class="code-block">print(type(25))    # &lt;class 'int'&gt;<br>print(type(7.99))  # &lt;class 'float'&gt;<br>print(type("Bot")) # &lt;class 'str'&gt;</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 8: Type Errors & f-strings</h3>
+    <p>Attempting to use the <code>+</code> operator to combine a string and a number results in a <strong>TypeError</strong> (e.g., <code>"Age: " + 25</code> will crash the program). </p>
+    <p>The cleanest way to embed variables inside text is using an <strong>f-string</strong> (formatted string). Place an <code>f</code> before the opening quote and put variables inside curly braces <code>{}</code>.</p>
+    <div class="code-block">age = 25<br>print(f"Age: {age}")</div>
+    <p><span class="highlight">Output:</span> <code>Age: 25</code></p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 9: Type Casting</h3>
+    <p>Sometimes you need to convert data from one type to another (e.g., converting text from a website into a mathable number).</p>
+    <ul>
+        <li><code>str()</code>: Converts a value to a string (text).</li>
+        <li><code>int()</code>: Converts a value to a whole number.</li>
+        <li><code>float()</code>: Converts a value to a decimal number.</li>
+    </ul>
+    <p>If you attempt to convert text that isn't a number (e.g., <code>int("hello")</code>), Python will throw a <strong>ValueError</strong>.</p>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 10: Comments & Multi-line Strings</h3>
+    <p><strong>Comments</strong> are notes written for humans to read and are completely ignored by Python. They start with a hashtag <code>#</code>.</p>
+    <p>You can create multi-line strings (and f-strings) by wrapping text in triple quotes <code>"""</code>. This is highly useful for profile cards or formatting blocks of text.</p>
+    <div class="code-block"># This is a comment<br>profile = f"""<br>Name: {name}<br>Age: {age}<br>"""</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lessons 11-13: Project - Assemble Your Bot</h3>
+    <p>These lessons combine prior concepts into a complete, sequential script. A well-organized script runs top-to-bottom and utilizes comments to divide the code into logical, readable sections.</p>
+    <div class="code-block"># --- logo ---
+logo = """
+ @@@
+ %%%
+"""
+print(logo)
+
+# --- introduction ---
+bot_name = "Botty"
+print(f"Hi, I'm {bot_name}.")
+
+# --- calculation skill ---
+hours = 24
+minutes = hours * 60
+print(f"A day has {minutes} minutes.")</div>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 14: Summary</h3>
+    <p>By completing this pre-course, you have learned the foundational building blocks of Python programming, including executing code with <code>print()</code>, managing data via variables and types (<code>int</code>, <code>float</code>, <code>str</code>), checking types and resolving errors, utilizing math operators, and creating dynamic output with <code>f-strings</code>.</p>
+</div>
