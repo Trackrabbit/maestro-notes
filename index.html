@@ -10,6 +10,22 @@
     <header class="site-header">
         <h1>Maestro Notes</h1>
         <p>Your hub for course notes.</p>
+        <!-- Global Navigation Mood Control Module -->
+        <div class="fixed top-4 right-4 z-50 flex items-center font-sans text-xs">
+            <label for="global-mood-select" class="sr-only">Select Workspace Mood Profile</label>
+            <select id="global-mood-select" onchange="updateGlobalMoodState(this.value)" class="bg-slate-900 text-slate-200 border border-slate-700 px-3 py-2 rounded-lg shadow-xl backdrop-blur-md cursor-pointer focus:outline-none focus:border-indigo-500 font-semibold tracking-wide transition-all duration-200">
+                <option value="clinical">🎭 Posture: Clinical</option>
+                <option value="delulu">✨ Posture: Delulu</option>
+                <option value="creative">🎨 Posture: Creative</option>
+                <option value="focus">🧠 Posture: Hyper-Focus</option>
+                <option value="apathetic">😐 Posture: Apathetic</option>
+                <option value="anxious">🌊 Posture: Anxious</option>
+                <option value="stressed">🧱 Posture: Stressed</option>
+            </select>
+        </div>
+        
+        <!-- Ambient Interface Graphics Injection Layer -->
+        <div id="global-mood-fx-layer" class="pointer-events-none fixed inset-0 z-0"></div>
     </header>
 
     <div class="layout-container">
