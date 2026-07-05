@@ -1,17 +1,21 @@
-/* ==========================================================================
-   MAESTRO NOTES MASTER STYLESHEET
-   Combines Dashboard Sidebar Layouts with Global Mood-Reactive Variables
-   ========================================================================== */
-
-/* --- 1. Global Core Theme Variable Mappings & Defaults --- */
+/* --- 1. CSS Variables for Easy Theming --- */
 :root {
-    --site-bg: #020617;      /* Default clinical slate-950 background */
-    --site-text: #f8fafc;    /* Default clinical slate-100 body text */
-    --site-accent: #6366f1;  /* Default clinical indigo-500 interactive elements */
-    --site-filter: none;
+    --bg-page: #f4f7f9;
+    --bg-surface: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --accent-color: #0ea5e9; /* Modern vibrant blue */
+    --accent-hover: #0284c7;
+    --border-light: #e2e8f0;
+    --code-bg: #0f172a;
+    --code-text: #e2e8f0;
+    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+    --radius-md: 12px;
+    --radius-sm: 8px;
 }
 
-/* --- 2. Base Document Lifecycle Resets --- */
+/* --- 2. Base Reset & Typography --- */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -19,221 +23,257 @@
 }
 
 body {
-    background-color: var(--site-bg) !important;
-    color: var(--site-text) !important;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    line-height: 1.6;
-    overflow-x: hidden;
-    transition: background-color 0.8s ease, color 0.8s ease, filter 0.8s ease;
+    /* Uses the operating system's native modern font */
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: var(--bg-page);
+    color: var(--text-primary);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
 }
 
-/* --- 3. Base Workspace Structural Layout Framework --- */
+/* --- 3. Header --- */
 .site-header {
+    background-color: var(--bg-surface);
     padding: 24px 40px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    background-color: rgba(0, 0, 0, 0.15);
+    text-align: center;
+    border-bottom: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
 }
 
+.site-header h1 {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+.site-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-top: 4px;
+}
+
+/* --- 4. Layout --- */
 .layout-container {
     display: flex;
-    min-h-screen: calc(100vh - 110px);
-    width: 100%;
+    max-width: 1280px;
+    margin: 40px auto;
+    padding: 0 24px;
+    gap: 40px;
+    align-items: flex-start;
 }
 
+/* --- 5. Modern Sidebar --- */
 .sidebar {
-    width: 280px;
-    min-width: 280px;
-    border-right: 1px solid var(--site-accent) !important;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 24px;
-    display: flex;
-    flex-direction: col;
-    gap: 20px;
-    transition: border-color 0.8s ease;
+    flex: 0 0 260px;
+    background-color: transparent; /* Removes the boxy background */
+    position: sticky;
+    top: 40px; /* Keeps it in view when scrolling */
 }
 
 .sidebar h2 {
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    color: rgba(255, 255, 255, 0.4);
-    margin-top: 10px;
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    font-weight: 700;
 }
 
+.nav-list { list-style: none; }
+.course-group { margin-bottom: 24px; }
+
+.course-title {
+    display: block;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.week-list {
+    list-style: none;
+    border-left: 2px solid var(--border-light);
+    margin-left: 4px;
+}
+
+.week-list li { margin-bottom: 4px; }
+
+.week-list a {
+    text-decoration: none;
+    color: var(--text-secondary);
+    display: block;
+    padding: 8px 16px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.week-list a:hover {
+    color: var(--accent-color);
+    background-color: rgba(14, 165, 233, 0.05);
+}
+
+.week-list a.active {
+    color: var(--accent-color);
+    font-weight: 600;
+    background-color: rgba(14, 165, 233, 0.08);
+    position: relative;
+}
+
+.week-list a.active::before {
+    content: '';
+    position: absolute;
+    left: -2px;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background-color: var(--accent-color);
+}
+
+/* --- 6. Main Content Area --- */
 .content-area {
-    flex-grow: 1;
-    padding: 40px;
-    max-w: 1200px;
+    flex: 1;
+    background-color: var(--bg-surface);
+    padding: 40px 48px;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border-light);
 }
 
 .content-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--site-accent);
-    padding-bottom: 16px;
-    margin-bottom: 28px;
-    transition: border-color 0.8s ease;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-light);
 }
 
-/* Navigation Lists styling */
-.nav-list, .week-list {
-    list-style: none;
-}
-.course-group {
-    margin-bottom: 16px;
-}
-.course-title {
-    display: block;
-    font-size: 0.85rem;
+.content-header h2 { 
+    font-size: 1.8rem;
     font-weight: 700;
-    margin-bottom: 6px;
-    opacity: 0.7;
+    letter-spacing: -0.5px;
 }
-.week-list a {
-    display: block;
-    padding: 6px 12px;
-    color: inherit;
+
+/* --- 7. Download Button --- */
+.btn-download {
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 10px 20px;
     text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 600;
     font-size: 0.9rem;
-    border-radius: 6px;
-    opacity: 0.85;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(14, 165, 233, 0.2);
 }
-.week-list a:hover, .week-list a.active {
-    background-color: rgba(255, 255, 255, 0.05);
-    opacity: 1;
+
+.btn-download:hover { 
+    background-color: var(--accent-hover); 
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
+}
+
+/* --- 8. Notes Content Styling --- */
+.lesson-block {
+    margin-bottom: 40px;
+}
+
+.lesson-block h3 {
+    color: var(--text-primary);
+    font-size: 1.3rem;
+    margin-bottom: 16px;
     font-weight: 600;
 }
 
-/* --- 4. Academic Lesson Structure Layout (.lesson-block) --- */
-.lesson-block {
-    margin-bottom: 24px;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    page-break-inside: avoid;
+.lesson-block p, .lesson-block ul {
+    color: var(--text-secondary);
+    margin-bottom: 16px;
 }
 
-/* Elements that dynamically bind to the mood accent system token */
-.lesson-block, 
-.code-block, 
-select, 
-button {
-    border-color: var(--site-accent) !important;
-}
-
-h1, h2, h3, h4 {
-    font-weight: 800;
-    tracking-tight: -0.025em;
-    color: var(--site-text);
-}
-
-h3 {
-    font-size: 1.25rem;
-    margin-bottom: 8px;
-}
-
-p {
-    font-size: 0.95rem;
-    margin-bottom: 12px;
-    color: inherit;
-    opacity: 0.9;
-}
-
-strong {
-    font-weight: 700;
-    color: var(--site-text);
-}
-
-/* --- 5. Professional Monospace Code Blocks (.code-block) --- */
+/* Sleek Mac-style Code Blocks */
 .code-block {
-    background-color: rgba(0, 0, 0, 0.3) !important;
-    padding: 14px 18px;
-    border-left: 4px solid var(--site-accent);
-    border-radius: 0 8px 8px 0;
-    font-family: 'Fira Code', 'Courier New', Courier, monospace;
-    font-size: 0.875rem;
+    background-color: var(--code-bg);
+    color: var(--code-text);
+    padding: 20px;
+    border-radius: var(--radius-sm);
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    font-size: 0.9rem;
+    margin: 20px 0;
     white-space: pre-wrap;
-    word-break: break-word;
-    margin: 14px 0;
-    color: #e2e8f0;
-    transition: border-color 0.8s ease;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
 }
 
-code {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 2px 6px;
-    border-radius: 4px;
-    font-family: monospace;
-    font-size: 0.9em;
-}
-
-/* --- 6. Interactive Educational Components (.more-info) --- */
-details.more-info {
-    margin: 16px 0;
-    padding: 14px;
-    background-color: rgba(255, 255, 255, 0.01);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    border-radius: 8px;
-    page-break-inside: avoid;
-}
-
-details.more-info summary {
-    font-weight: 700;
+.output-block {
+    background-color: #f8fafc;
+    border-left: 4px solid var(--border-light);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+    color: var(--text-secondary);
     font-size: 0.9rem;
-    color: var(--site-accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+/* --- Expandable "Read More" Sections --- */
+.more-info {
+    background-color: var(--bg-surface);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin: 20px 0;
+    transition: all 0.2s ease;
+}
+
+.more-info:hover {
+    border-color: var(--accent-color);
+}
+
+.more-info summary {
+    font-weight: 600;
+    color: var(--accent-color);
     cursor: pointer;
-    user-select: none;
-    outline: none;
-    transition: color 0.8s ease;
+    list-style: none; /* Hides default triangle */
+    display: flex;
+    align-items: center;
 }
 
-details.more-info p {
-    margin-top: 10px;
-    margin-bottom: 0;
-    font-size: 0.9rem;
-    opacity: 0.85;
+/* Custom arrow icon for the summary */
+.more-info summary::before {
+    content: '▶';
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 0.7rem;
+    transition: transform 0.2s;
 }
 
-/* --- 7. Ambient State Keyframe Engines --- */
-@keyframes delulu-drift {
-    0%, 100% { transform: translateY(0); opacity: 0.2; }
-    50% { transform: translateY(-8px); opacity: 0.5; }
-}
-.fx-delulu-sparkle {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    background-image: radial-gradient(circle, var(--site-accent) 1px, transparent 1px);
-    background-size: 24px 24px; animation: delulu-drift 4s infinite ease-in-out;
+.more-info[open] summary::before {
+    transform: rotate(90deg);
 }
 
-@keyframes aurora-flow {
-    0%, 100% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-}
-.fx-creative-bar {
-    position: fixed; top: 0; left: 0; right: 0; height: 4px; z-index: 100;
-    background: linear-gradient(270deg, #a855f7, #06b6d4, #6366f1);
-    background-size: 600% 600%; animation: aurora-flow 6s infinite linear;
+.more-info p {
+    margin-top: 12px;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    padding-left: 20px;
+    border-left: 2px solid var(--border-light);
 }
 
-@keyframes tunnel-glow {
-    0%, 100% { box-shadow: inset 0 0 40px rgba(245, 158, 11, 0.05); }
-    50% { box-shadow: inset 0 0 80px rgba(245, 158, 11, 0.15); }
-}
-.fx-focus-tunnel {
-    position: fixed; inset: 0; pointer-events: none; z-index: 0;
-    animation: tunnel-glow 5s infinite ease-in-out;
-}
-
-/* --- 8. High-Fidelity PDF Printing Engine (@media print) --- */
 @media print {
-    body { background-color: #ffffff !important; color: #111111 !important; padding: 0; }
-    h1 { color: #0f172a !important; border-bottom-color: #334155 !important; }
-    .sidebar, .site-header, button, #mood-modal, .fixed { display: none !important; }
-    .content-area { padding: 0; width: 100%; }
-    .lesson-block { border-color: #cbd5e1 !important; background-color: transparent !important; }
-    .code-block { background-color: #f8fafc !important; color: #0f172a !important; border-left-color: #475569 !important; }
-    details.more-info { display: block !important; border-color: #cbd5e1 !important; }
-    details.more-info summary { color: #0f172a !important; }
+    details {
+        display: block !important;
+        border: 1px solid #ddd;
+        padding: 10px;
+        margin-top: 10px;
+    }
+    summary {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+    }
+    summary::before {
+        display: none; /* Removes the clickable arrow for print */
+    }
 }
