@@ -1,0 +1,202 @@
+<div class="lesson-block">
+    <h3>Lesson 1: Naming That Tells a Story</h3>
+    <p>Code readability begins with clear, intent-revealing names. Variable and function names must self-describe their exact purpose, eliminating the need to read the underlying implementation details. Ambiguous names should be refactored across code scopes to prevent errors like a <code>NameError</code>.</p>
+    <div class="code-block"># Refactored for intent-revealing clarity
+def add_numbers(num1, num2):
+    return num1 + num2
+
+sorted_playlist = sorted(playlist) # Clear indicator of data state</div>
+    <details class="more-info">
+        <summary>Understanding Variable Shadowing</summary>
+        <p>Always avoid naming variables the same name as built-in functions or user-defined functions (such as naming a list variable <code>add_song</code> when a function named <code>add_song()</code> exists). Doing so causes "shadowing," where Python overwrites the function identifier with the variable's value, breaking subsequent function calls.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 2: Crafting Docstrings That Explain the Why</h3>
+    <p>Docstrings are triple-quoted strings positioned immediately underneath a function's <code>def</code> declaration line. While standard comments document specific implementation steps, docstrings describe the macro-level purpose of the function, detail its inputs (<code>Args</code>), and specify what it provides back to the program (<code>Returns</code>).</p>
+    <div class="code-block">def average(nums):
+    """
+    Calculate the mean of a group of numbers.
+    Args:
+        nums: A list of integers or floats.
+    Returns:
+        A float representing the mean; caller must print.
+    """
+    return sum(nums) / len(nums)</div>
+    <details class="more-info">
+        <summary>The Operational Difference: return vs. print</summary>
+        <p>A <code>return</code> statement hands a data value back to the code pipeline, allowing the result to be captured in variables, passed to other functions, or stored. Conversely, a <code>print()</code> statement merely displays characters on the console and returns <code>None</code>, making the data unusable for future calculation steps.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 3: Writing Comments with Real Purpose</h3>
+    <p>High-quality code comments do not state what the code does—which should already be obvious from reading clean syntax. Instead, purpose-driven comments are reserved for capturing hidden business logic, explaining the "why" behind magic numbers, making baseline assumptions transparent, or detailing safety rules.</p>
+    <div class="code-block"># Calculates 8.25% sales tax (defined by state regulations)
+tax = price * 0.0825
+
+# Only attempt if target exists to avoid an execution crash
+if "spam" in items:
+    items.remove("spam")</div>
+    <details class="more-info">
+        <summary>Using Comments to Track Complex Edge Constraints</summary>
+        <p>Purposeful comments are highly critical when handling slicing operations, such as <code>data[1:-1]</code>. Instead of writing "# slice index 1 to negative 1", a professional comment clarifies the underlying business choice: "# Excludes highest and lowest scores to create a clean grading curve data set."</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 4: Keeping It Clean</h3>
+    <p>Adhering to code style discipline reduces cognitive load and eliminates formatting bugs. This includes enforcing the standard 4-space indentation layout rule, avoiding mixed tab spacing which risks an <code>IndentationError</code>, removing invisible trailing spaces at line ends, and cleaning up excess internal padding.</p>
+    <div class="code-block"># Clean, professionally spaced statement
+x = 5
+y = 2
+print(f"Total with tax: ${total:,.2f}") # Column-aligned formatting</div>
+    <details class="more-info">
+        <summary>Why Trailing Spaces Matter in Production</summary>
+        <p>Trailing whitespace characters are functionally invisible to engineers but are fully tracked by modern version control systems like Git. Leaving stray spaces creates messy file histories ("diffs") during team code updates, making peer reviews more tedious and difficult to audit.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 5: Making Code Instantly Readable</h3>
+    <p>Transforming complex software scripts into readable blocks relies on a standardized, structured formatting checklist. Engineers can consistently elevate comprehension by using self-explanatory naming conventions, maintaining a strict 4-space indent hierarchy, providing 2 blank line separation blocks above functions, and ensuring comments explain execution reasons.</p>
+    <div class="code-block">def get_total(price_list):
+    """Return the sum of numbers in the list."""
+    total = 0
+    for item in price_list:
+        total += item
+    return total</div>
+    <details class="more-info">
+        <summary>The Return Placement Trap in Loops</summary>
+        <p>When structuring conditional code inside loop operations, ensure the <code>return</code> keyword is correctly aligned outside the loop block. Indenting a <code>return</code> statement directly under an internal loop row forces the function to exit immediately on its very first pass, creating a logical bug.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 6: Turning Long Scripts into Sharp Functions</h3>
+    <p>Relying exclusively on monolithic, "all-in-main" scripts results in highly duplicated logic paths that are hard to scale and maintain. Splitting monolithic logic blocks into a modular architecture of distinct, focused helper functions makes features reusable and gives complex algorithms readable names.</p>
+    <div class="code-block">def calc_subtotal(venue, food, drink):
+    """Calculate subtotal of event expenses."""
+    return venue + food + drink
+
+def calc_tax(subtotal, rate):
+    """Calculate tax on subtotal."""
+    return subtotal * rate</div>
+    <details class="more-info">
+        <summary>The Cost of Hardcoded Logic Rows</summary>
+        <p>When script processing parameters are hardcoded inline rather than isolated inside scoped parameters, changing operational rules later (like updating a state tax percentage) forces you to search and replace code fragments across multiple file tracks, introducing severe risk of manual human error.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 7: Following Program Flow with Print Tracing</h3>
+    <p>Print tracing provides visibility into changing runtime conditions, allowing engineers to verify math steps and state adjustments across loop cycles. Tracing places targeted statement readouts directly before or after critical mutations to display internal step metrics.</p>
+    <div class="code-block">total = 0
+for i in range(1, 6):
+    total = total + i
+    print(f"[step {i:>2}] total={total}") # Active state tracing readout</div>
+    <details class="more-info">
+        <summary>Staging Clean Code Transfers to Version Control</summary>
+        <p>While print tracking blocks are excellent diagnostic tools for tracing software execution bugs locally, they are explicitly considered "dead baggage" in deployment models. Always scrub out tracing markers before staging or committing a finalized build branch to Git repositories.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 8: Using Invariants as Safety Checkpoints</h3>
+    <p>An invariant is an immutable programmatic truth constraint that must evaluate to true at all designated points of execution. Incorporating <code>assert</code> statements inside looping blocks sets automated checkpoints that actively prevent hidden bugs from silently corrupting live database ledgers.</p>
+    <div class="code-block">total = 0
+for n in range(2, 21, 2):
+    total += n
+    assert total > 0, f"total dropped below threshold! total={total}"</div>
+    <details class="more-info">
+        <summary>Deconstructing the Assert Statement Rule</summary>
+        <p>The <code>assert</code> keyword takes an evaluation expression and an optional custom error text argument. If the boolean evaluation resolves to <code>False</code>, Python immediately halts runtime processing and issues an <code>AssertionError</code>, isolating the bug location instantly.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 9: Designing Functions That Can Be Reused Anywhere</h3>
+    <p>True modular engineering isolates logic routines from global variable spaces. High-quality functions receive operational parameters entirely as localized data arguments and explicitly return results, avoiding external dependencies or global environment leaks.</p>
+    <div class="code-block">def subtotal(costs):
+    """Calculate an independent, self-contained total sum."""
+    total = 0 # Local scope declaration
+    for num in costs:
+        total += num
+    return total</div>
+    <details class="more-info">
+        <summary>The Risk of Leaking Global Parameters</summary>
+        <p>Functions that rely on variables defined globally outside their local boundaries are not modular. If those global fields are absent or updated in another file track, the function fails. Relying on explicit function parameters keeps processing components stable and portable across code bases.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 10: Stress It to the Edge</h3>
+    <p>Robust testing requires designing comprehensive evaluation strategies that target boundaries across three foundational entry scopes: typical system runs (normal entries), parameters sitting directly at upper or lower limits (edge inputs), and unauthorized types (invalid entries).</p>
+    <div class="code-block">def double(x):
+    return x * 2
+
+# Boundary testing suite
+assert double(5) == 10   # Normal test
+assert double(0) == 0    # Edge minimum test
+assert double("5") == "55" # Invalid text repetition test</div>
+    <details class="more-info">
+        <summary>Identifying Off-By-One Boundary Anomalies</summary>
+        <p>Loops and slicing utilities are prone to off-by-one errors due to Python's exclusive upper boundaries (such as <code>range(0, 5)</code> executing indexes up to 4). Validating tracking counts right at these limits ensures execution offsets are caught immediately.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 11: Pushing the Limits</h3>
+    <p>Comprehensive error verification maps out explicit input boundaries (the validation filters governing acceptable types) and output boundaries (the formatted text structural limits that generated values must stay within) using structured table-driven testing parameters.</p>
+    <div class="code-block">def truncate(text, max_len):
+    return text[:max_len]
+
+# Verifying output constraints remain inside boundaries
+assert len(truncate("Hello World", 12)) <= 12</div>
+    <details class="more-info">
+        <summary>Managing Mathematical Zero Divisions</summary>
+        <p>A classic boundary hazard involves division inputs. Passing <code>0</code> as a denominator denominator values directly inside embedded statements causes code execution crashes before reaching function logic paths. Handle validation parameters carefully to shield arithmetic systems.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 12: Validating Inputs Before They Break Things</h3>
+    <p>Input validation prevents software systems from processing corrupted or unexpected user inputs. Implementing "assert-guards" or manual conditional blocks at the very top of a function shields down-stream processes by stopping faulty operations before they propagate error trends.</p>
+    <div class="code-block">def show_email(email):
+    if not email:
+        raise ValueError("email target cannot be empty")
+    print("Email:", email)</div>
+    <details class="more-info">
+        <summary>Validating Compound Field Collections</summary>
+        <p>When running data sweeps through lists of nested dictionary logs, utilize structured conditional chains inside <code>.items()</code> loops. This method checks each item's properties against validation standards, such as verifying character cases or string lengths, before passing records to system outputs.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 13: The Art of a Well-Placed Error</h3>
+    <p>Throwing specific, context-rich error classes is essential for writing professional-grade software components. Instead of allowing systems to crash with ambiguous errors, engineers use <code>raise</code> statements with descriptive messages that provide explicit execution context for faster bug resolution.</p>
+    <div class="code-block">def int_or_die(text):
+    if not text.isdigit():
+        raise ValueError(f"Digits only allowed: received '{text}'")
+    return int(text)</div>
+    <details class="more-info">
+        <summary>Exception Class Strategy: Choosing the Right Class</summary>
+        <p>Always map validation issues to the correct native exception class: use <code>ValueError</code> for out-of-range value errors, <code>TypeError</code> for incorrect types, and <code>KeyError</code> for missing dictionary keys. This helps debugging tools identify the exact nature of an issue immediately.</p>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h3>Lesson 14: Refactoring with Confidence</h3>
+    <p>Refactoring is the process of cleaning up code structure, improving names, and removing dead or duplicate logic paths without altering the program's observable output behavior. Executing clean refactoring cycles optimizes source files while maintaining system stability.</p>
+    <div class="code-block"># Refactored data loop with grouped conditional logic
+for name, age in data:
+    if age < 0:
+        invalid_profiles.append((name, age))
+    else:
+        sum_age += age</div>
+    <details class="more-info">
+        <summary>The Dangers of Unreachable Dead Code</summary>
+        <p>Leaving dead code inside a script—such as statements placed directly underneath a function exit return or inside a hardcoded <code>if False:</code> block—creates confusing noise for software maintainers. Promptly removing dead logic keeps execution paths clear and secure.</p>
+    </details>
+</div>
