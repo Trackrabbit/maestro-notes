@@ -15,6 +15,57 @@
     <div class="layout-container">
         <!--- Sidebar Navigation --->
         <aside class="sidebar">
+            <!-- Sidebar Navigation Integration Block -->
+            <div class="p-4 border-b border-slate-800 font-sans">
+                <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2">Workspace Layout</div>
+                
+                <!-- Clean, On-Theme Sidebar Menu Button Element -->
+                <button onclick="toggleMoodModal(true)" class="w-full flex items-center justify-between px-3 py-2 bg-slate-950 border border-slate-800 hover:border-slate-700 rounded-lg text-xs text-slate-200 transition-all duration-200 shadow-sm group">
+                    <span class="flex items-center gap-2">
+                        <span>🎭</span>
+                        <span id="sidebar-current-mood-label" class="font-medium">Posture: Clinical</span>
+                    </span>
+                    <span class="text-slate-500 group-hover:text-slate-300 transition-colors text-[10px]">▼</span>
+                </button>
+            </div>
+            
+            <!-- Dynamic State Overlay Picker Modal (Remains Universal Viewport Scoped) -->
+            <div id="mood-modal" class="hidden fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                <div class="bg-slate-900 border border-slate-800 rounded-xl max-w-sm w-full p-5 shadow-2xl relative text-left font-sans">
+                    
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-xs font-extrabold tracking-wide uppercase text-slate-400">Select Workspace Posture</h3>
+                        <button onclick="toggleMoodModal(false)" class="text-slate-500 hover:text-slate-300 text-lg font-bold p-1 leading-none">&times;</button>
+                    </div>
+                    
+                    <p class="text-[11px] text-slate-400 mb-4">Choose an environment configurations matrix to apply across pages:</p>
+                    
+                    <!-- Grid Selection Matrix -->
+                    <div class="grid grid-cols-2 gap-2 text-xs">
+                        <button onclick="updateGlobalMoodState('clinical')" class="p-2.5 bg-slate-950 border border-slate-800 rounded-md font-bold text-slate-200 text-left hover:border-indigo-500 transition-all">
+                            🎭 Clinical
+                        </button>
+                        <button onclick="updateGlobalMoodState('delulu')" class="p-2.5 bg-slate-950 border border-slate-800 rounded-md font-bold text-pink-400 text-left hover:border-pink-500 transition-all">
+                            ✨ Delulu
+                        </button>
+                        <button onclick="updateGlobalMoodState('creative')" class="p-2.5 bg-slate-950 border border-slate-800 rounded-md font-bold text-purple-400 text-left hover:border-purple-500 transition-all">
+                            🎨 Creative
+                        </button>
+                        <button onclick="updateGlobalMoodState('focus')" class="p-2.5 bg-slate-950 border border-slate-800 rounded-md font-bold text-amber-400 text-left hover:border-amber-500 transition-all">
+                            🧠 Hyper-Focus
+                        </button>
+                        <button onclick="updateGlobalMoodState('apathetic')" class="p-2.5 bg-slate-950 border border-slate-800 rounded-md font-bold text-zinc-500 text-left hover:border-zinc-500 transition-all">
+                            😐 Apathetic
+                        </button>
+                        <button onclick="updateGlobalMoodState('anxious')" class="p-2.5 bg-slate-950 border border-slate-800 rounded-md font-bold text-sky-400 text-left hover:border-sky-500 transition-all">
+                            🌊 Anxious
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ambient Dynamic Visual Layer -->
+            <div id="global-mood-fx-layer" class="pointer-events-none fixed inset-0 z-0"></div>
             <h2>Modules</h2>
             <nav>
                 <ul class="nav-list">
