@@ -137,7 +137,7 @@ details.more-info p {
 
 /* ✨ Delulu Glitter Drift Animation */
 @keyframes delulu-drift {
-    0%, 100__ { transform: translateY(0); opacity: 0.2; }
+    0%, 100% { transform: translateY(0); opacity: 0.2; }
     50% { transform: translateY(-8px); opacity: 0.5; }
 }
 .fx-delulu-sparkle {
