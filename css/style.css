@@ -63,23 +63,24 @@ body {
 }
 
 /* ==========================================================================
-   INDEPENDENTLY SCROLLABLE SIDEBAR ACCORDION DRAWER
+   FIXED: INDEPENDENTLY SCROLLABLE SIDEBAR WITH CLEAN TOGGLES
    ========================================================================== */
 .sidebar {
     flex: 0 0 260px;
     background-color: transparent;
     
-    /* FIX: Locks the sidebar height to the viewport window and allows independent scrolling */
+    /* Enforces strict containment to force independent scrolling */
     position: sticky;
     top: 40px;
+    height: calc(100vh - 80px);
     max-height: calc(100vh - 80px);
-    overflow-y: auto;
-    padding-right: 8px; /* Adds a gap buffer for the native browser scrollbar track */
+    overflow-y: auto !important;
+    padding-right: 12px;
 }
 
-/* Elegant scrollbar integration for modern browser rendering engines */
+/* Scrollbar styling for modern rendering engines */
 .sidebar::-webkit-scrollbar {
-    width: 5px;
+    width: 6px;
 }
 
 .sidebar::-webkit-scrollbar-track {
@@ -110,10 +111,12 @@ body {
     margin-bottom: 24px; 
 }
 
+/* Clean, single-line alignment header block */
 .course-title {
     display: flex !important;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: row !important;
+    justify-content: space-between !important;
+    align-items: center !important;
     gap: 8px;
     font-weight: 700;
     color: var(--text-primary);
@@ -126,11 +129,17 @@ body {
     width: 100%;
 }
 
+/* Prevents duplicated or text-nested arrow markers from falling to new lines */
+.course-title span {
+    display: inline-block;
+}
+
 .toggle-icon {
     font-size: 0.7rem;
     color: var(--text-secondary);
     transition: transform 0.2s ease;
     display: inline-block;
+    flex-shrink: 0;
 }
 
 .week-list {
@@ -139,12 +148,11 @@ body {
     margin-left: 4px;
 }
 
-/* Hide collapsed elements smoothly */
+/* Structural toggle parameters managed by the application loop */
 .week-list.collapsed {
     display: none !important;
 }
 
-/* Rotates indicator arrow smoothly down when parent class toggles open */
 .course-group.open .toggle-icon {
     transform: rotate(90deg);
     color: var(--accent-color);
@@ -412,6 +420,7 @@ table tbody tr:nth-child(even) {
         padding: 20px;
         position: relative;
         top: 0;
+        height: auto;
         max-height: none;
         overflow-y: visible;
     }
