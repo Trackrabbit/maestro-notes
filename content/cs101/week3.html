@@ -1,3 +1,9 @@
+<!-- ==========================================================================
+     MAESTRO UNIVERSITY COURSEWARE — SYSTEM EDUCATION CORE
+     COURSE: CS101 (Software Engineering Principles) — WEEK 3
+     TOPIC: Breaking Problems Down & Structural Problem Formulation
+     ========================================================================== -->
+
 <!-- MILESTONE 1: CONCEPTUAL SCOPING -->
 <div class="lesson-block">
     <h1>Milestone 1: Conceptual Scoping & Problem Engineering</h1>
@@ -15,7 +21,7 @@
     
     <details class="more-info">
         <summary>📘 Click to Expand: The 1-2-3 Drafting Breakdown</summary>
-        <ul class="list-disc pl-6 my-2 text-xs space-y-1 text-slate-300">
+        <ul>
             <li><strong>Goal (Line 1):</strong> The direct business value or user problem the code solves.</li>
             <li><strong>Target Users (Line 2):</strong> Exactly who will be interacting with this system space.</li>
             <li><strong>Context (Line 3):</strong> The concrete situation, time of day, or environment where execution occurs.</li>
@@ -38,7 +44,7 @@
 
     <details class="more-info">
         <summary>🧐 Click to Expand: Spotting Technical Leakage & Red-Flags</summary>
-        <p class="text-xs text-slate-300 mb-2">
+        <p style="font-size: 0.85rem; opacity: 0.85; margin-bottom: 10px;">
             If a high-level architectural comment mentions specific fields, control flows, loops, or variable scopes, it has drifted into an implementation detail. Always separate the human goal from the computer execution path.
         </p>
         <div class="code-block" style="font-size: 0.8rem; margin: 0;">
@@ -61,7 +67,7 @@
 
     <details class="more-info">
         <summary>📋 Click to Expand: Structural Blueprint Requirements</summary>
-        <ol class="list-decimal pl-6 my-2 text-xs space-y-1 text-slate-300">
+        <ol>
             <li><strong>Header:</strong> A clear, concise title marking the problem domain scope.</li>
             <li><strong>Purpose:</strong> A 1-2 sentence implementation-neutral summary of intent.</li>
             <li><strong>Constraints:</strong> Explicit system boundaries (what the code MUST NOT do).</li>
@@ -106,10 +112,10 @@ print(problem_statement.splitlines()[1]) &nbsp;# Output: Header: Daily Bedtime R
 
     <details class="more-info">
         <summary>📈 Click to Expand: Boundary Analysis Theory</summary>
-        <p class="text-xs text-slate-300">
-            <strong>Normal Cases:</strong> Typical valid test criteria that pass easily under basic conditions.<br/>
-            <strong>Edge Cases:</strong> Boundary values sitting on the absolute minimum or maximum limits of allowed inputs (such as 0, negative values, empty dictionaries, or massive parameters). This is where 90% of real production errors live.
-        </p>
+        <ul>
+            <li><strong>Normal Cases:</strong> Typical valid test criteria that pass easily under basic conditions.</li>
+            <li><strong>Edge Cases:</strong> Boundary values sitting on the absolute minimum or maximum limits of allowed inputs (such as 0, negative values, empty dictionaries, or massive parameters). This is where 90% of real production errors live.</li>
+        </ul>
     </details>
 
     <div class="code-block">
@@ -135,8 +141,8 @@ print(problem_statement.splitlines()[1]) &nbsp;# Output: Header: Daily Bedtime R
 
     <details class="more-info">
         <summary>🔬 Click to Expand: Why Assertions Beat Manual Print Checks</summary>
-        <p class="text-xs text-slate-300">
-            Console log print statements require a human eyes to manually verify calculations on every rerun. An <code>assert</code> statement, however, evaluates instantly and completely silently. It will only shout (raise an error) if a code change breaks your system constraints, making it the perfect tool for catching hidden currency rounding bugs automatically.
+        <p style="font-size: 0.85rem; opacity: 0.85;">
+            Console log print statements require human eyes to manually verify calculations on every single rerun. An <code>assert</code> statement, however, evaluates instantly and completely silently. It will only shout (raise an error) if a subsequent code change breaks your system constraints, making it the perfect tool for catching hidden currency rounding bugs automatically.
         </p>
     </details>
 
@@ -171,7 +177,7 @@ assert split == 14.38, f"Error: Got {split} (Expected 14.38)"
 
     <details class="more-info">
         <summary>🛠️ Click to Expand: The 3-Step Decomposition Pipeline</summary>
-        <ol class="list-decimal pl-6 my-2 text-xs space-y-2 text-slate-300">
+        <ol>
             <li><strong>Lesson 5: Single-Responsibility Cut:</strong> Break a requirement down into individual tasks that do exactly one kind of work, ensuring each task begins with a strong action verb (e.g., <em>Get</em>, <em>Calculate</em>, <em>Determine</em>, <em>Display</em>).</li>
             <li><strong>Lesson 6: Subproblem Contracts:</strong> Define a clear input/output contract signature for every step before coding (e.g., <code># format_price: raw float -> formatted USD string</code>).</li>
             <li><strong>Lesson 7: Logical Sequencing:</strong> Order tasks into a strict execution chain where no element relies on data that hasn't been produced yet. Always validate this flow with a manual data dry-run.</li>
@@ -187,39 +193,39 @@ assert split == 14.38, f"Error: Got {split} (Expected 14.38)"
         To lower your cognitive overhead when turning a plan into logic, map the active verb of your subproblem directly onto a structural Python layout pattern:
     </p>
     
-    <table class="w-full text-left text-xs my-4 border border-slate-800/60 rounded-lg overflow-hidden">
+    <table>
         <thead>
-            <tr class="bg-slate-900/60 text-slate-400 font-bold border-b border-slate-800">
-                <th class="p-2.5">Subproblem Core Verb</th>
-                <th class="p-2.5">Target Pattern Name</th>
-                <th class="p-2.5">Production Code Hint Style</th>
+            <tr>
+                <th style="width: 30%;">Subproblem Core Verb</th>
+                <th style="width: 25%;">Target Pattern Name</th>
+                <th style="width: 45%;">Production Code Hint Style</th>
             </tr>
         </thead>
-        <tbody class="divide-y divide-slate-800/40 text-slate-300">
+        <tbody>
             <tr>
-                <td class="p-2.5 font-mono">look up / find / translate</td>
-                <td class="p-2.5 font-semibold text-indigo-400">Lookup Table</td>
-                <td class="p-2.5 font-mono">value = dictionary_map.get(key, default)</td>
+                <td class="font-mono">look up / find / translate</td>
+                <td class="font-semibold" style="color: #6366f1;">Lookup Table</td>
+                <td class="font-mono" style="color: #38bdf8;">value = dictionary_map.get(key, default)</td>
             </tr>
             <tr>
-                <td class="p-2.5 font-mono">calculate total / count / collect</td>
-                <td class="p-2.5 font-semibold text-indigo-400">Accumulator Loop</td>
-                <td class="p-2.5 font-mono">total += score &nbsp;OR &nbsp;list.append(item)</td>
+                <td class="font-mono">calculate total / count / collect</td>
+                <td class="font-semibold" style="color: #6366f1;">Accumulator Loop</td>
+                <td class="font-mono" style="color: #38bdf8;">total += score &nbsp;OR &nbsp;list.append(item)</td>
             </tr>
             <tr>
-                <td class="p-2.5 font-mono">skip bad data / remove optional</td>
-                <td class="p-2.5 font-semibold text-indigo-400">Filter Loop</td>
-                <td class="p-2.5 font-mono">for item in items: if invalid: continue</td>
+                <td class="font-mono">skip bad data / remove optional</td>
+                <td class="font-semibold" style="color: #6366f1;">Filter Loop</td>
+                <td class="font-mono" style="color: #38bdf8;">for item in items: if invalid: continue</td>
             </tr>
             <tr>
-                <td class="p-2.5 font-mono">exit on bad input / protect boundary</td>
-                <td class="p-2.5 font-semibold text-indigo-400">Guard Clause</td>
-                <td class="p-2.5 font-mono">if not parameter_list: return "Error Signal"</td>
+                <td class="font-mono">exit on bad input / protect boundary</td>
+                <td class="font-semibold" style="color: #6366f1;">Guard Clause</td>
+                <td class="font-mono" style="color: #38bdf8;">if not parameter_list: return "Error Signal"</td>
             </tr>
             <tr>
-                <td class="p-2.5 font-mono">convert each item / map one-to-one</td>
-                <td class="p-2.5 font-semibold text-indigo-400">Transform Loop</td>
-                <td class="p-2.5 font-mono">for x in raw_items: transformed.append(modify(x))</td>
+                <td class="font-mono">convert each item / map one-to-one</td>
+                <td class="font-semibold" style="color: #6366f1;">Transform Loop</td>
+                <td class="font-mono" style="color: #38bdf8;">for x in raw_items: transformed.append(modify(x))</td>
             </tr>
         </tbody>
     </table>
@@ -235,7 +241,7 @@ assert split == 14.38, f"Error: Got {split} (Expected 14.38)"
 
     <details class="more-info">
         <summary>⚖️ Click to Expand: The Task Priority Scoring Formula</summary>
-        <p class="text-xs text-slate-300 mb-2">
+        <p style="font-size: 0.85rem; opacity: 0.85; margin-bottom: 10px;">
             By assigning scores from 1–5 to our operational metrics, we use a programmatic sorting calculation to dictate exactly what to build first:
             <br/><br/>
             <code>Priority Score = (Impact × 2) – Effort + (5 – Risk)</code>
