@@ -251,19 +251,42 @@ body {
 }
 
 @media print {
-    details {
+    body {
+        background-color: #020617 !important;
+        color: #f8fafc !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+
+    .site-header,
+    .sidebar,
+    .btn-download,
+    .content-header {
+        display: none !important;
+    }
+
+    .layout-container {
         display: block !important;
-        border: 1px solid #ddd;
-        padding: 10px;
-        margin-top: 10px;
+        width: 100% !important;
     }
-    summary {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 5px;
+
+    .content-area,
+    .notes-container {
+        width: 100% !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }
-    summary::before {
-        display: none;
+
+    .lesson-block {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        margin-bottom: 24px !important;
+    }
+
+    .code-block {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+        white-space: pre-wrap !important;
     }
 }
 
@@ -298,36 +321,30 @@ body {
     }
 }
 
-/* ==========================================================================
-   MAESTRO NOTES - LAYOUT & TYPOGRAPHY CORRECTIONS
-   ========================================================================== */
-
-/* --- Fix 1: Add intentional indentation padding inside expandable tooltips --- */
 details.more-info ol, 
 details.more-info ul {
-    padding-left: 24px !important; /* Forces numbers/bullets to indent perfectly inside borders */
+    padding-left: 24px !important;
     margin-top: 10px;
     margin-bottom: 10px;
 }
 
 details.more-info li {
-    margin-bottom: 8px; /* Give each list item breathing room */
+    margin-bottom: 8px;
 }
 
-/* --- Fix 2: Upgrade the Design System Table Mechanics --- */
 table {
     width: 100%;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 0.85rem;
-    background-color: rgba(0, 0, 0, 0.2); /* Deep background to anchor text */
+    background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 table th {
-    background-color: rgba(99, 102, 241, 0.1) !important; /* Subtle indigo accent highlight */
+    background-color: rgba(99, 102, 241, 0.1) !important;
     color: #f8fafc;
     font-weight: 700;
     padding: 12px 16px;
@@ -341,11 +358,10 @@ table td {
     vertical-align: middle;
 }
 
-/* Alternating zebra rows to ensure dense code snippets remain scannable */
 table tbody tr:nth-child(even) {
     background-color: rgba(255, 255, 255, 0.01);
 }
 
 table tbody tr:hover {
-    background-color: rgba(99, 102, 241, 0.03); /* Soft interactive glow on row hover */
+    background-color: rgba(99, 102, 241, 0.03);
 }
