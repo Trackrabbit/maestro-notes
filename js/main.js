@@ -1,3 +1,7 @@
+function exportActiveLessonToPDF() {
+    window.print();
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Maestro Notes initialized.");
     
