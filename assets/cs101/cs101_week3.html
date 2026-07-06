@@ -1,0 +1,230 @@
+<!-- LESSON BLOCK 1: SCOPING FRAMEWORKS -->
+<div class="lesson-block">
+    <h1>Milestone 1: Conceptual Scoping & Problem Engineering</h1>
+    <p>
+        Before writing a single line of production code, a software engineer must establish absolute clarity regarding 
+        <strong>why</strong> a feature exists and <strong>what boundary constraints</strong> it must satisfy. Moving too quickly into 
+        syntax design without a clear contract opens the door to severe scope creep and architectural misalignment.
+    </p>
+
+    <h3>Lesson 1.1: Writing a Clear Feature Brief</h3>
+    <p>
+        A professional <strong>Feature Brief</strong> is a tight, 4–6 sentence paragraph explaining a feature's scope without leaking technical 
+        implementation details. Every high-quality brief uses the <strong>1-2-3 Drafting Method</strong> to guarantee three core dimensions are accounted for:
+    </p>
+    <ul class="list-disc pl-6 mb-4 opacity-90 text-sm space-y-1">
+        <li><strong>Goal (Line 1):</strong> The direct business value or user problem the code solves.</li>
+        <li><strong>Target Users (Line 2):</strong> Exactly who will be interacting with this system space.</li>
+        <li><strong>Context (Line 3):</strong> The concrete situation, time of day, or environment where execution occurs.</li>
+    </ul>
+
+    <div class="code-block">
+<!-- Production Reference Case Study: The Bedtime Tracker Brief -->
+# Case Study: Daily Bedtime Routine Feature Brief<br/>
+# "This feature gives parents a simple way to remind and track pre-bedtime tasks their children should complete each night. It runs on the parent’s phone and helps establish a consistent nighttime routine for young children. Parents can create their own list of tasks or use a built-in checklist with items like brushing teeth, washing their face, or saying prayers. An optional alarm signals when it’s time to begin so everything is finished by bedtime. As children complete tasks, they earn points to stay engaged and motivated."
+    </div>
+
+    <details class="more-info">
+        <summary>💡 Instructor Insights: Trimming Technical Leakage</summary>
+        <p>
+            Notice that this brief contains <strong>zero technical keywords</strong>. It does not mention databases, arrays, view models, or API 
+            endpoints. Keeping the brief implementation-neutral ensures that even if you rewrite your entire back-end architecture down the road, 
+            the fundamental user value statement remains completely true.
+        </p>
+    </details>
+
+    <br/>
+    <hr class="border-slate-800/60 my-4" />
+
+    <h3>Lesson 1.2: Structural Problem Statements</h3>
+    <p>
+        Once the brief is approved, we translate it into a formal <strong>Problem Statement</strong>. This serves as a testable check-list 
+        split into four strict, un-nested layout components:
+    </p>
+    
+    <div class="code-block">
+# ========================================================================<br/>
+# FORMAL DOCUMENTATION POSTURE: PROBLEM STATEMENT TEMPLATE<br/>
+# ========================================================================<br/>
+<br/>
+# 1. HEADER: A clear, concise title marking the problem domain scope.<br/>
+# 2. PURPOSE: A 1-2 sentence implementation-neutral summary of intent.<br/>
+# 3. CONSTRAINTS: Explicit system boundaries (what the code MUST NOT do).<br/>
+# 4. SUCCESS CRITERIA: Numbered, observable pass/fail behaviors for testers.
+    </div>
+
+    <p>
+        Let's look at how this structural blueprint models our real world case study directly inside Python as an immutable multi-line text string:
+    </p>
+
+    <div class="code-block">
+problem_statement = """<br/>
+1. Header: Daily Bedtime Routine Tracker<br/>
+2. Purpose: This program helps parents establish and track structured nightly routines for children.<br/>
+3. Constraints:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- The program must run as a phone application layout canvas.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- The program must support tracking multiple children, one at a time.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- If the split input count is &lt;= 0, the program must trigger an input error prompt.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;- The program must not persist or store user records over external online databases.<br/>
+4. Success Criteria:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;1. The program shows the full list of child profiles when initialized on launch.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;2. The program allows the user to select a targeted child profile to monitor.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;3. The program displays a dedicated checklist of bedtime tasks for the chosen child.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;4. The program updates a task's visual status to 'complete' immediately when tapped.<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;5. The program displays a congratulations message when all tasks hit completion.<br/>
+"""<br/>
+<br/>
+# Instructor Precision Check: Splitting lines carefully reveals structural components<br/>
+print(problem_statement.splitlines()[1]) &nbsp;# Output: 1. Header: Daily Bedtime Routine Tracker
+    </div>
+</div>
+
+<!-- LESSON BLOCK 2: DATA ROUTING & INVARIANTS -->
+<div class="lesson-block">
+    <h1>Milestone 2: Data Routing contracts & Invariant Testing</h1>
+    <p>
+        With the success criteria established, we map out the data boundaries. This means defining the explicit 
+        <strong>Inputs</strong> and <strong>Expected Outputs</strong> for our functions using clear contract rows and verification checks.
+    </p>
+
+    <h3>Lesson 2.1: Designing Input/Output Testing Tables</h3>
+    <p>
+        Every testable function requires a contract layout map. When constructing your mapping tables, you must explicitly account for 
+        <strong>Normal Cases</strong> (standard valid data) and boundary-pushing <strong>Edge Cases</strong> (minimum values, empty vectors, or maximum boundaries):
+    </p>
+
+    <div class="code-block">
+# Subproblem Contract: calculate_tip: bill, tip_pct, people -> tip, total, split<br/>
+# ========================================================================<br/>
+# INPUTS &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| ASSUMPTION PROFILE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| EXPECTED OUTPUTS<br/>
+# ========================================================================<br/>
+# (100, 10, 5) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Normal Case: Standard Split | (10.0, 110.0, 22.0)<br/>
+# (100, 0, &nbsp;5) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Low Edge: Zero Percent Tip | (0.0, &nbsp;100.0, 20.0)<br/>
+# (100, 10, 1) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Boundary Edge: Single User &nbsp;| (10.0, 110.0, 110.0)<br/>
+# (50, &nbsp;15, 4) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;| Precision Edge: Floating Ppt| (7.5, &nbsp;57.5, &nbsp;14.38)<br/>
+# ========================================================================<br/>
+# Core Assumption: All monetary outputs must follow strict currency rounding (2 decimal points).
+    </div>
+
+    <br/>
+    <hr class="border-slate-800/60 my-4" />
+
+    <h3>Lesson 2.2: Defensive Programming via Assertions</h3>
+    <p>
+        Instead of using basic screen print outputs to inspect our results, professional software environments use 
+        <strong>Assertions</strong>. An assertion statement verifies that your core math logic strictly honors your function contracts, catching 
+        rounding errors or boundary breaks instantly.
+    </p>
+
+    <div class="code-block">
+def calculate_tip(bill, tip_percent, num_people):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"""Calculates currency accurate splits with strict 2-point rounding formatting."""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;tip_amount = round(bill * (tip_percent / 100), 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;grand_total = round(bill + tip_amount, 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;per_person = round(grand_total / num_people, 2)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return tip_amount, grand_total, per_person<br/>
+<br/>
+# Enforce Core Pipeline Verification Assertions Globally<br/>
+tip, total, split = calculate_tip(50, 15, 4)<br/>
+assert tip == 7.5, f"Error: Got {tip}, expected 7.50"<br/>
+assert total == 57.50, f"Error: Got {total}, expected 57.50"<br/>
+assert split == 14.38, f"Error: Got {split}, expected 14.38 (Caught floating rounding error!)"<br/>
+<br/>
+print("[System Test Matrix]: All core pipeline assertions verified successfully.")
+    </div>
+</div>
+
+<!-- LESSON BLOCK 3: ALGORITHM ARCHITECTURE -->
+<div class="lesson-block">
+    <h1>Milestone 3: Functional Decomposition & Structural Patterns</h1>
+    <p>
+        The final phase of engineering is breaking a large problem statement down into a sequence of small, single-responsibility functions 
+        and mapping them to known, repeatable design patterns.
+    </p>
+
+    <h3>Lesson 3.1: Technical Leakage & The "Verb-to-Pattern" Engine</h3>
+    <p>
+        When writing docstrings or code comments, watch out for <strong>Technical Leakage</strong>. If your high-level comments contain control-flow terms 
+        (like loops, lists, arrays, or fields), you are describing <em>how</em> the code works instead of <em>why</em> it exists. 
+        Instead, match the core verb of your subproblem directly to an established industry design pattern:
+    </p>
+
+    <table class="w-full text-left text-xs my-4 border border-slate-800/60 rounded-lg overflow-hidden">
+        <thead>
+            <tr class="bg-slate-900/60 text-slate-400 font-bold border-b border-slate-800">
+                <th class="p-2.5">Subproblem Core Verb</th>
+                <th class="p-2.5">Target Pattern Name</th>
+                <th class="p-2.5">Production Code Hint Style</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-800/40 text-slate-300">
+            <tr>
+                <td class="p-2.5 font-mono">look up / find / translate</td>
+                <td class="p-2.5 font-semibold text-indigo-400">Lookup Table</td>
+                <td class="p-2.5 font-mono">value = dictionary_map.get(key, default)</td>
+            </tr>
+            <tr>
+                <td class="p-2.5 font-mono">calculate total / count / collect</td>
+                <td class="p-2.5 font-semibold text-indigo-400">Accumulator Loop</td>
+                <td class="p-2.5 font-mono">total += score &nbsp;OR &nbsp;list.append(item)</td>
+            </tr>
+            <tr>
+                <td class="p-2.5 font-mono">skip bad data / remove optional</td>
+                <td class="p-2.5 font-semibold text-indigo-400">Filter Loop</td>
+                <td class="p-2.5 font-mono">for item in items: if invalid: continue</td>
+            </tr>
+            <tr>
+                <td class="p-2.5 font-mono">exit on bad input / protect boundary</td>
+                <td class="p-2.5 font-semibold text-indigo-400">Guard Clause</td>
+                <td class="p-2.5 font-mono">if not parameter_list: return "Error Signal"</td>
+            </tr>
+            <tr>
+                <td class="p-2.5 font-mono">convert each item / map one-to-one</td>
+                <td class="p-2.5 font-semibold text-indigo-400">Transform Loop</td>
+                <td class="p-2.5 font-mono">for x in raw_items: transformed.append(modify(x))</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br/>
+    <hr class="border-slate-800/60 my-4" />
+
+    <h3>Lesson 3.2: Assembling Functions Into Ordered Pipelines</h3>
+    <p>
+        Once individual subproblems are solved using clean patterns, an orchestration function wires them together into an end-to-end 
+        <strong>Pipeline</strong>. Data must flow linearly: each step consumes the output returned by the preceding line.
+    </p>
+
+    <div class="code-block">
+# Pipeline Blueprint Case Study: Budget Optimization Matrix Engine<br/>
+<br/>
+def calc_totals(monthly_transactions):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"""Accumulator Pattern: Computes total categorical spending vectors."""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;category_totals = {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for item, category, amount in monthly_transactions:<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;category_totals[category] = category_totals.get(category, 0) + amount<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return category_totals<br/>
+<br/>
+def flag_over_budget(category_totals, budget_limits):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"""Transform Pattern: Compares totals against limit lookup variables."""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;over_budget_flags = {}<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;for category, total in category_totals.items():<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limit = budget_limits.get(category, 0)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;over_budget_flags[category] = total &gt; limit<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return over_budget_flags<br/>
+<br/>
+def run_financial_pipeline(transactions, budgets):<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;"""Orchestrator function that manages step-by-step data flow."""<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;step1_totals = calc_totals(transactions)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;step2_flags = flag_over_budget(step1_totals, budgets)<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;return step2_flags<br/>
+<br/>
+# Verify Pipeline Execution<br/>
+mock_transactions = [(1, "food", 120), (2, "transport", 45), (3, "food", 50)]<br/>
+mock_budgets = {"food": 150, "transport": 100}<br/>
+<br/>
+pipeline_output = run_financial_pipeline(mock_transactions, mock_budgets)<br/>
+# Output maps that 'food' spending (170) has breached the budget barrier (150)<br/>
+print(pipeline_output) &nbsp;# Output: {'food': True, 'transport': False}
+    </div>
+</div>
