@@ -1,20 +1,46 @@
-// ==========================================================================
-// MAESTRO NOTES - CORE WORKSPACE APPLICATION SCRIPT
-// ==========================================================================
 document.addEventListener("DOMContentLoaded", () => {
     const navLinks = document.querySelectorAll(".week-list a");
     const dynamicTitle = document.getElementById("dynamic-title");
     const dynamicWeek = document.getElementById("dynamic-week");
     const dynamicDownload = document.getElementById("dynamic-download");
     const notesContent = document.getElementById("notes-content");
+    
+    const courseTitles = document.querySelectorAll(".course-title");
 
-    // Initialize Workspace with Current Default Selection Link
-    const activeLink = document.querySelector(".week-list a.active");
-    if (activeLink) {
-        loadModuleContent(activeLink);
+    courseTitles.forEach(title => {
+        if (!title.querySelector(".toggle-icon")) {
+            title.innerHTML = `<span>${title.textContent}</span> <span class="toggle-icon">▶</span>`;
+        }
+
+        title.style.cursor = "pointer";
+        title.addEventListener("click", () => {
+            const parentGroup = title.closest(".course-group");
+            const weekList = parentGroup.querySelector(".week-list");
+            
+            parentGroup.classList.toggle("open");
+            if (weekList) {
+                weekList.classList.toggle("collapsed");
+            }
+        });
+    });
+
+    const defaultActiveLink = document.querySelector(".week-list a.active");
+    if (defaultActiveLink) {
+        const parentGroup = defaultActiveLink.closest(".course-group");
+        const weekList = parentGroup.querySelector(".week-list");
+        const titleToken = parentGroup.querySelector(".course-title");
+        
+        parentGroup.classList.add("open");
+        if (weekList) weekList.classList.remove("collapsed");
+        
+        loadModuleContent(defaultActiveLink);
+    } else {
+        // If no link is active, ensure all lists start collapsed by default
+        document.querySelectorAll(".week-list").forEach(list => {
+            list.classList.add("collapsed");
+        });
     }
 
-    // Register Click Event Handlers across Sidebar Elements
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
             e.preventDefault();
@@ -24,25 +50,19 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    /**
-     // Funnels custom data properties straight into your interface header blocks
-     */
     function loadModuleContent(linkElement) {
         const targetContent = linkElement.getAttribute("data-content");
         const courseTitle = linkElement.getAttribute("data-title");
         const weekDesignation = linkElement.getAttribute("data-week");
         const pdfPath = linkElement.getAttribute("data-pdf");
 
-        // Inject Content Header Strings Dynamically
         if (dynamicTitle && courseTitle) dynamicTitle.textContent = courseTitle;
         if (dynamicWeek && weekDesignation) dynamicWeek.textContent = weekDesignation;
         
-        // Safety Fallback Check: Route anchor pointer paths to target assets folder safely
         if (dynamicDownload && pdfPath) {
             dynamicDownload.setAttribute("href", pdfPath);
         }
 
-        // Asynchronously Fetch and Mount Target HTML Payload Components
         notesContent.innerHTML = "<p>Loading module contents...</p>";
         fetch(targetContent)
             .then(response => {
