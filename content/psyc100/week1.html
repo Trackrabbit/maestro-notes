@@ -1,0 +1,160 @@
+<!-- ==========================================================================
+   MILESTONE 1: FOUNDATIONS & EXPERIMENTAL FRAMEWORKS
+   ========================================================================== -->
+<div class="lesson-block">
+    <h1>Milestone 1: Foundations & Experimental Frameworks</h1>
+    <p>
+        Psychology is formally defined as the <strong>scientific study of mind and behavior</strong>. Its primary objective is to move beyond casual intuition by employing empirical methods to observe, track, and measure mental processes and their outward expressions.
+    </p>
+
+    <!-- LESSON 1 -->
+    <h3>Lesson 1: Defining the Scope & Core Dualities</h3>
+    <p>
+        The field originates from a fundamental pairing: tracking what occurs internally within the mind (the cognitive thought process) alongside observable, physical actions (behavior). 
+    </p>
+    
+    <details class="more-info">
+        <summary>📘 Click to Expand: The Four Main Psychological Goals</summary>
+        <ul>
+            <li><strong>Describe (What happens?):</strong> Observing a behavioral phenomenon and detailing its characteristics accurately.</li>
+            <li><strong>Explain (Why does it happen?):</strong> Identifying the underlying causes, mechanisms, or drivers behind the behavior.</li>
+            <li><strong>Predict (When will it happen next?):</strong> Utilizing historical data trends to forecast future occurrences.</li>
+            <li><strong>Control/Influence (Can we change it?):</strong> Applying validated empirical insights to alter or shape real-world behavior.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Practical Application: Smartwatch Break Reminder App Design
+# Goal: Control/Influence behavior by modifying environmental cues.
+def schedule_reminder(user_stress_index, time_since_break):
+    if user_stress_index > 7.5 or time_since_break >= 120:
+        return "Trigger break notification immediately"
+    return "Maintain background monitoring loop"
+    </div>
+
+    <!-- LESSON 2 & 3 -->
+    <h3>Lessons 2 & 3: Historical Milestones & Structural Shifts</h3>
+    <p>
+        The formal evolution of modern psychological science is marked by a series of foundational shifts, transitioning from examining internal consciousness components to tracking pure behavior, before ultimately synthesizing both via information-processing models.
+    </p>
+
+    <details class="more-info">
+        <summary>🧐 Click to Expand: Major Historical Paradigms</summary>
+        <ul>
+            <li><strong>Wilhelm Wundt (Leipzig, 1879):</strong> Structuralism. Focused on breaking down and measuring the basic parts of the mind using a ticking chronograph.</li>
+            <li><strong>William James (1890s):</strong> Functionalism. Focused on the functions of consciousness, examining how mental processes help humans adapt and survive.</li>
+            <li><strong>Sigmund Freud (1900s):</strong> Psychoanalysis. Centered entirely on unconscious motives—hidden thoughts and drives shaping conscious behavior.</li>
+            <li><strong>Watson & Skinner (1920s–1950s):</strong> Behaviorism. Declared observable actions as king, dismissing internal unobservable mental processes.</li>
+            <li><strong>The Cognitive Revolution (1960s+):</strong> Reframed the human mind as an information processor, explicitly comparing it to a computer.</li>
+        </ul>
+    </details>
+</div>
+
+<!-- ==========================================================================
+   MILESTONE 2: THE APPLIED POWER OF THE SITUATION
+   ========================================================================== -->
+<div class="lesson-block">
+    <h1>Milestone 2: The Applied Power of the Situation</h1>
+    <p>
+        Social context can drastically reshape individual choices, often overriding personal ethics, internal beliefs, or established moral standards in a matter of hours.
+    </p>
+
+    <!-- LESSON 4 & 5 -->
+    <h3>Lessons 4 & 5: Obedience, Authority, and Milgram's Paradigm</h3>
+    <p>
+        Milgram's classic 1961 obedience setup demonstrated that ordinary citizens would continue administering dangerous, escalating shocks to an innocent learner simply because they were commanded to do so by an authority figure.
+    </p>
+
+    <div class="code-block">
+# Milgram Compliance Metrics Simulation
+def evaluate_obedience_level(voltage_reached):
+    # Standard compliance data profiles
+    if voltage_reached >= 300:
+        return "Blind Obedience: Complies despite audible protests"
+    elif voltage_reached >= 150:
+        return "Hesitation Boundary: Expresses doubt but continues"
+    return "Autonomous State: Retains individual agency"
+    </div>
+
+    <!-- LESSON 6, 7 & 8 -->
+    <h3>Lessons 6, 7 & 8: Institutional Review Boards & Research Ethics</h3>
+    <p>
+        Public outrage following high-stress experiments led directly to the creation of strict research ethics rules and Institutional Review Boards (IRBs) to act as watchful guardians over participant well-being.
+    </p>
+
+    <details class="more-info">
+        <summary>🔬 Click to Expand: The Core Research Safeguards</summary>
+        <ol>
+            <li><strong>Informed Consent:</strong> Explicitly detailing the study's purpose and risks before volunteers sign up.</li>
+            <li><strong>Right to Withdraw:</strong> Guaranteeing participants can leave the study at any time without penalty or reduced compensation.</li>
+            <li><strong>Protection from Harm:</strong> Enforcing strict monitoring protocols to prevent physical or emotional distress.</li>
+            <li><strong>Debriefing:</strong> Revealing any hidden deceptions immediately after the study and providing support.</li>
+        </ol>
+    </details>
+
+    <div class="code-block">
+# IRB Compliance Checker Model
+def review_proposal(has_consent, has_penalty_free_withdrawal, risk_ratio):
+    if not has_consent or not has_penalty_free_withdrawal:
+        return "REJECTED: Severe violation of individual respect"
+    if risk_ratio > 0.15:
+        return "REQUIRES CHANGES: Beneficence threshold crossed"
+    return "APPROVED: Ethical safeguards verified"
+    </div>
+</div>
+
+<!-- ==========================================================================
+   MILESTONE 3: GROUP DYNAMICS & THE RESISTANCE TOOLKIT
+   ========================================================================== -->
+<div class="lesson-block">
+    <h1>Milestone 3: Group Dynamics & The Resistance Toolkit</h1>
+    <p>
+        Understanding how groups dilute individual responsibility or pressure choices allows us to construct actionable strategies to protect our personal agency.
+    </p>
+
+    <!-- LESSONS 9 & 10 -->
+    <h3>Lessons 9 & 10: Conformity, Bystander Effects, and Self-Deception</h3>
+    <p>
+        Conformity operates through two distinct forces: normative influence (conforming to fit in and be liked) and informational influence (conforming because you believe the group knows more than you do).
+    </p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 30%;">Social Phenomenon</th>
+                <th style="width: 25%;">Core Psychological Driver</th>
+                <th style="width: 45%;">Real-World Resistance Tactic</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-mono">Unanimous Peer Pressure</td>
+                <td class="font-semibold" style="color: var(--text-primary);">Normative Influence</td>
+                <td class="font-mono" style="color: var(--text-primary);">Recruit or voice a single voice of dissent.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">The Bystander Effect</td>
+                <td class="font-semibold" style="color: var(--text-primary);">Diffusion of Responsibility</td>
+                <td class="font-mono" style="color: var(--text-primary);">Take the first visible action or isolate an individual.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Blind Obedience</td>
+                <td class="font-semibold" style="color: var(--text-primary);">Authority Cue Dominance</td>
+                <td class="font-mono" style="color: var(--text-primary);">Pause for clarity and ask for objective evidence.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Groupthink Defect</td>
+                <td class="font-semibold" style="color: var(--text-primary);">Harmony Over Evaluation</td>
+                <td class="font-mono" style="color: var(--text-primary);">Appoint a devil's advocate to break false consensus.</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+# Reframe Technique: Overcoming Self-Deception & Fear of Rejection
+def reframe_thought(negative_input):
+    if negative_input == "I'll never get a job":
+        return "Finding a job can be hard, but every application sent increases my chances."
+    return negative_input
+    </div>
+</div>
