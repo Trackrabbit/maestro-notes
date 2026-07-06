@@ -1,0 +1,125 @@
+<div class="lesson-block">
+    <h1>Milestone 1: Cognitive Shortcuts & Attention Limits</h1>
+    <p>
+        The human brain operates as a high-efficiency shortcut machine. To manage an overwhelming influx of environmental data under strict time constraints, the mind relies on baseline intuitive rules known as <strong>heuristics</strong>, sacrificing absolute precision to conserve mental energy.
+    </p>
+
+    <h3>Lesson 1: The Fast-Triaging Mind & Core Heuristics</h3>
+    <p>
+        Heuristics allow for rapid, automatic decisions that are usually "good enough" for immediate survival but systematically introduce predictable cognitive biases.
+    </p>
+    
+    <details class="more-info">
+        <summary>📘 Click to Expand: Core Shortcuts Unpacked</summary>
+        <ul>
+            <li><strong>Representativeness Heuristic:</strong> Judging the probability of an event based on how closely it matches an internal stereotype, while completely ignoring baseline mathematical odds (e.g., assuming a specific sequence of coin flips "looks" more random).</li>
+            <li><strong>Availability Heuristic:</strong> Estimating the likelihood or frequency of an occurrence based entirely on how easily or vividly examples can be recalled from memory (e.g., overestimating rare risks like shark attacks due to vivid media coverage).</li>
+            <li><strong>Inattentional Blindness:</strong> A severe defect of selective attention where an individual fails to notice a glaringly obvious, fully visible stimulus because their limited cognitive spotlight is entirely consumed by a demanding primary task.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Practical Application: Triage Heuristic vs. Exhaustive Validation
+def fast_triage(patient_profile):
+    # Heuristic Rule: Fast, pattern-matched prioritization
+    if patient_profile.get("clutching_chest") and patient_profile.get("sweating"):
+        return "Priority 1: Immediate Cardiovascular Intervention"
+    return "Priority 2: Standard Assessment Queue"
+    </div>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 2: Asymmetrical Risks & Anchoring Mechanics</h1>
+    <p>
+        Human choices are rarely absolute; they are highly dependent on starting reference points and how options are mathematically or emotionally framed.
+    </p>
+
+    <h3>Lessons 2 & 3: Anchoring, Framing, and Prospect Theory</h3>
+    <p>
+        Tversky & Kahneman (1974) demonstrated that exposing the mind to an initial arbitrary number sets an unconscious <strong>anchor</strong>, pulling all subsequent estimates toward it. Furthermore, the <strong>framing effect</strong> proves that the exact same objective data yields completely different choices depending on whether it is presented in a positive frame (gains) or a negative frame (losses).
+    </p>
+
+    <div class="code-block">
+# Simulation: Reference Point Shifts & Diminishing Sensitivity
+def evaluate_prospect_value(amount, reference_point):
+    net_value = amount - reference_point
+    if net_value >= 0:
+        # Concave curve for gains: Diminishing emotional return
+        return net_value ** 0.5
+    else:
+        # Convex and steeper curve for losses: Loss Aversion Multiplier
+        return -2.0 * (abs(net_value) ** 0.5)
+    </div>
+
+    <h3>Lesson 4: Reconstructive Memory defects</h3>
+    <p>
+        Memory does not function like a pristine video recording replay. Instead, it operates as an active, post-event reconstruction that can be easily contaminated by leading questions.
+    </p>
+
+    <details class="more-info">
+        <summary>🧐 Click to Expand: The Loftus Car-Crash Experiment Mechanics</summary>
+        <ul>
+            <li><strong>Wording Contamination:</strong> Changing a single verb in a post-event question (asking how fast cars went when they <em>"smashed"</em> vs. <em>"hit"</em>) systematically altered participants' speed reconstructions (40.8 mph vs. 34.0 mph).</li>
+            <li><strong>False Memory Injection:</strong> The aggressive verb frame forced the brain to fill in logical gaps during reconstruction, causing participants to confidently "remember" broken glass that never existed in the original footage.</li>
+        </ul>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 3: Systemic Calibration & Protection Matrices</h1>
+    <p>
+        To make rational decisions in complex engineering or corporate environments, we must construct operational safeguards that prevent silent cognitive distortions from hijacking our data pipelines.
+    </p>
+
+    <h3>Lessons 5–10: Metacognitive Gaps & Behavioral Guardrails</h3>
+    <p>
+        Unskilled individuals routinely suffer from a dual burden: they lack the competence to achieve optimal results, and they lack the metacognitive ability to recognize their own errors (The Dunning-Kruger Effect). 
+    </p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Cognitive Distortion</th>
+                <th style="width: 30%;">Interpersonal & Technical Risk</th>
+                <th style="width: 45%;">Systemic Solution / Guardrail</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-mono">The Halo Effect</td>
+                <td>A team member's past charm or presentation skills color judgments of their technical work.</td>
+                <td class="font-semibold">Review each technical asset completely independently using blind, text-only criteria.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Inattentional Blindness</td>
+                <td>Tunnel vision causes critical system alerts or corner bugs to go completely unnoticed.</td>
+                <td class="font-semibold">Enforce a strict "Scan Before Submit" ritual, evaluating screens from top to bottom.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">The Marshmallow Effect</td>
+                <td>Immediate hot-system impulses (e.g., phone pings) deplete limited willpower reserves.</td>
+                <td class="font-semibold">Engineer the environment: turn on Do Not Disturb for fixed 30-minute sprint intervals.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Dunning-Kruger Trap</td>
+                <td>Unconscious overconfidence leading to severe task underestimation during sprints.</td>
+                <td class="font-semibold">Calibrate self-assessments by explicitly tracking actual execution times directly against estimates.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Somatic Marker Defect</td>
+                <td>Ignoring useful body warnings during fast-paced, high-stakes environments.</td>
+                <td class="font-semibold">Incorporate somatic markers intentionally: pause when a heavy traffic situation or system layout "feels off."</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+# Operational Safety: Multi-Variant Safeguard Pipeline
+def execute_sprint_planning(initial_estimate_months, independent_peer_reviews):
+    # Anti-Anchoring Guardrail: Re-calibrates based on distributed team facts
+    if len(independent_peer_reviews) == 0:
+        return f"REJECTED: Anchoring risk high on initial {initial_estimate_months} month value."
+    calibrated_average = sum(independent_peer_reviews) / len(independent_peer_reviews)
+    return f"Calibrated Project Length Verified: {calibrated_average} months."
+    </div>
+</div>
