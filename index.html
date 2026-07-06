@@ -14,38 +14,52 @@
     </header>
 
     <div class="layout-container">
-        <!-- Sidebar Navigation Links -->
-        <aside class="sidebar">
-            <h2>Modules</h2>
-            <nav>
-                <ul class="nav-list">
-                    <li class="course-group">
-                        <span class="course-title">PC100 - Pre-course</span>
-                        <ul class="week-list">
-                            <li><a href="#" class="active" data-content="content/pc100/week1.html" data-pdf="assets/pc100/pc100_week1.pdf" data-title="PC100: Pre-course" data-week="Week 1">Week 1: Hello world</a></li>
-                        </ul>
-                    </li>
 
-                    <li class="course-group">
-                        <span class="course-title">PY101 - Introduction to Python Programming</span>
-                        <ul class="week-list">
-                            <li><a href="#" data-content="content/py101/week1.html" data-pdf="assets/py101/py101_week1.pdf" data-title="PY101: Introduction to Python Programming" data-week="Week 1">Week 1: Core foundations and functions</a></li>
-                            <li><a href="#" data-content="content/py101/week2.html" data-pdf="assets/py101/py101_week2.pdf" data-title="PY101: Introduction to Python Programming" data-week="Week 2">Week 2: Decisions and loops</a></li>
-                            <li><a href="#" data-content="content/py101/week3.html" data-pdf="assets/py101/py101_week3.pdf" data-title="PY101: Introduction to Python Programming" data-week="Week 3">Week 3: Basic data structures</a></li>
-                        </ul>
-                    </li> 
-
-                    <li class="course-group">
-                        <span class="course-title">CS101 - Software Engineering Principles</span>
-                        <ul class="week-list">
-                            <li><a href="#" data-content="content/cs101/week1.html" data-pdf="assets/cs101/cs101_week1.pdf" data-title="CS101: Software Engineering Principles" data-week="Week 1">Week 1: Professional coding practices</a></li>
-                            <li><a href="#" data-content="content/cs101/week2.html" data-pdf="assets/cs101/cs101_week2.pdf" data-title="CS101: Software Engineering Principles" data-week="Week 2">Week 2: From ideas to instructions</a></li>
-                            <li><a href="#" data-content="content/cs101/week3.html" data-pdf="assets/cs101/cs101_week3.pdf" data-title="CS101: Software Engineering Principles" data-week="Week 3">Week 3: Breaking problems down</a></li>
-                        </ul>
-                    </li> 
+<aside class="sidebar">
+    <h2>Modules</h2>
+    <nav>
+        <ul class="nav-list">
+            
+            <li class="course-group">
+                <div class="course-toggle">
+                    <span class="course-title">PC100 - Pre-course</span>
+                    <span class="toggle-icon">▶</span>
+                </div>
+                <!-- Adding .collapsed locks the container on initial boot -->
+                <ul class="week-list collapsed">
+                    <li><a href="#" class="active" data-content="content/pc100/week1.html" data-pdf="assets/pc100/pc100_week1.pdf" data-title="PC100" data-week="Week 1">Week 1: Hello World</a></li>
                 </ul>
-            </nav>
-        </aside>
+            </li>
+
+            <!-- PY101 Module Suite -->
+            <li class="course-group">
+                <div class="course-toggle">
+                    <span class="course-title">PY101 - Introduction to Python Programming</span>
+                    <span class="toggle-icon">▶</span>
+                </div>
+                <ul class="week-list collapsed">
+                    <li><a href="#" data-content="content/py101/week1.html" data-pdf="assets/py101/py101_week1.pdf" data-title="PY101: Introduction to Python Programming" data-week="Week 1">Week 1: Core foundations and functions</a></li>
+                    <li><a href="#" data-content="content/py101/week2.html" data-pdf="assets/py101/py101_week2.pdf" data-title="PY101: Introduction to Python Programming" data-week="Week 2">Week 2: Decisions and loops</a></li>
+                    <li><a href="#" data-content="content/py101/week3.html" data-pdf="assets/py101/py101_week3.pdf" data-title="PY101: Introduction to Python Programming" data-week="Week 3">Week 3: Basic data structures</a></li>
+                </ul>
+            </li> 
+
+            <!-- CS101 Module Suite -->
+            <li class="course-group">
+                <div class="course-toggle">
+                    <span class="course-title">CS101 - Software Engineering Principles</span>
+                    <span class="toggle-icon">▶</span>
+                </div>
+                <ul class="week-list collapsed">
+                    <li><a href="#" data-content="content/cs101/week1.html" data-pdf="assets/cs101/cs101_week1.pdf" data-title="CS101: Software Engineering Principles" data-week="Week 1">Week 1: Professional coding practices</a></li>
+                    <li><a href="#" data-content="content/cs101/week2.html" data-pdf="assets/cs101/cs101_week2.pdf" data-title="CS101: Software Engineering Principles" data-week="Week 2">Week 2: From ideas to instructions</a></li>
+                    <li><a href="#" data-content="content/cs101/week3.html" data-pdf="assets/cs101/cs101_week3.pdf" data-title="CS101: Software Engineering Principles" data-week="Week 3">Week 3: Breaking problems down</a></li>
+                </ul>
+            </li> 
+
+        </ul>
+    </nav>
+</aside>
 
         <!-- Dynamic Content Area Panel -->
         <main class="content-area">
