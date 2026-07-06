@@ -1,17 +1,16 @@
+/* ==========================================================================
+   MAESTRO NOTES DESIGN SYSTEM — CORE PALETTE & BASE RULES
+   ========================================================================== */
 :root {
-    --bg-page: #f4f7f9;
-    --bg-surface: #ffffff;
-    --text-primary: #1e293b;
-    --text-secondary: #64748b;
-    --accent-color: #0ea5e9;
-    --accent-hover: #0284c7;
-    --border-light: #e2e8f0;
-    --code-bg: #0f172a;
-    --code-text: #e2e8f0;
-    --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-    --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-    --radius-md: 12px;
-    --radius-sm: 8px;
+    --bg-main: #020617;
+    --bg-card: #0f172a;
+    --bg-tooltip: #1e293b;
+    --bg-code: #020617;
+    --text-primary: #f8fafc;
+    --text-secondary: #cbd5e1;
+    --accent-indigo: #6366f1;
+    --accent-sky: #38bdf8;
+    --border-light: rgba(255, 255, 255, 0.05);
 }
 
 * {
@@ -21,306 +20,196 @@
 }
 
 body {
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    background-color: var(--bg-page);
+    background-color: var(--bg-main);
     color: var(--text-primary);
-    line-height: 1.7;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
 }
 
+/* --- Global Section Header Layout --- */
 .site-header {
-    background-color: var(--bg-surface);
-    padding: 24px 40px;
-    text-align: center;
+    background-color: var(--bg-card);
+    padding: 20px 40px;
     border-bottom: 1px solid var(--border-light);
-    box-shadow: var(--shadow-sm);
 }
 
 .site-header h1 {
-    font-size: 1.8rem;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 700;
 }
 
 .site-header p {
     color: var(--text-secondary);
-    font-size: 0.95rem;
-    margin-top: 4px;
+    font-size: 0.875rem;
 }
 
-/* --- 4. Layout --- */
+/* ==========================================================================
+   LAYOUT STRUCTURAL GRID WRAPPERS
+   ========================================================================== */
 .layout-container {
     display: flex;
-    max-width: 1280px;
-    margin: 40px auto;
-    padding: 0 24px;
-    gap: 40px;
-    align-items: flex-start;
+    min-height: calc(100vh - 85px);
 }
 
+/* --- Navigation Sidebar Panel --- */
 .sidebar {
-    flex: 0 0 260px;
-    background-color: transparent;
-    position: sticky;
-    top: 40px;
+    width: 280px;
+    min-width: 280px;
+    background-color: var(--bg-card);
+    border-right: 1px solid var(--border-light);
+    padding: 30px 20px;
 }
 
 .sidebar h2 {
-    color: var(--text-primary);
-    font-size: 1.1rem;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--accent-indigo);
     margin-bottom: 20px;
-    font-weight: 700;
 }
 
-.nav-list { list-style: none; }
-.course-group { margin-bottom: 24px; }
+.nav-list {
+    list-style: none;
+}
+
+.course-group {
+    margin-bottom: 20px;
+}
 
 .course-title {
-    display: block;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 12px;
     font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    display: block;
+    margin-bottom: 8px;
 }
 
 .week-list {
     list-style: none;
-    border-left: 2px solid var(--border-light);
-    margin-left: 4px;
+    padding-left: 10px;
 }
-
-.week-list li { margin-bottom: 4px; }
 
 .week-list a {
-    text-decoration: none;
     color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
     display: block;
-    padding: 8px 16px;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-    transition: all 0.2s ease;
-    font-size: 0.95rem;
-    font-weight: 500;
+    padding: 6px 0;
+    transition: color 0.2s;
 }
 
-.week-list a:hover {
-    color: var(--accent-color);
-    background-color: rgba(14, 165, 233, 0.05);
-}
-
+.week-list a:hover, 
 .week-list a.active {
-    color: var(--accent-color);
-    font-weight: 600;
-    background-color: rgba(14, 165, 233, 0.08);
-    position: relative;
+    color: var(--accent-sky);
 }
 
-.week-list a.active::before {
-    content: '';
-    position: absolute;
-    left: -2px;
-    top: 0;
-    height: 100%;
-    width: 2px;
-    background-color: var(--accent-color);
-}
-
+/* ==========================================================================
+   DYNAMIC LESSON AREA WORKSPACE
+   ========================================================================== */
 .content-area {
-    flex: 1;
-    background-color: var(--bg-surface);
-    padding: 40px 48px;
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-md);
-    border: 1px solid var(--border-light);
+    flex-grow: 1;
+    padding: 40px;
+    max-width: 900px;
 }
 
 .content-header {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 40px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-light);
+    align-items: flex-start;
+    border-bottom: 2px solid var(--accent-indigo);
+    padding-bottom: 16px;
+    margin-bottom: 28px;
+    gap: 16px;
 }
 
-.content-header h2 { 
-    font-size: 1.8rem;
-    font-weight: 700;
-    letter-spacing: -0.5px;
+.header-titles {
+    display: flex;
+    flex-direction: column;
 }
 
+#dynamic-title {
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.2;
+    color: var(--text-primary);
+}
+
+#dynamic-week {
+    font-size: 1.25rem;
+    color: var(--accent-indigo);
+    margin-top: 6px;
+    font-weight: 500;
+}
+
+/* --- Action Button Interface Core --- */
 .btn-download {
-    background-color: var(--accent-color);
-    color: #fff;
-    padding: 10px 20px;
+    display: inline-block;
+    background-color: var(--accent-indigo);
+    color: var(--text-primary);
     text-decoration: none;
-    border-radius: var(--radius-sm);
+    padding: 10px 18px;
+    border-radius: 6px;
     font-weight: 600;
     font-size: 0.9rem;
-    transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(14, 165, 233, 0.2);
+    white-space: nowrap;
+    border: none;
+    transition: background-color 0.2s;
 }
 
-.btn-download:hover { 
-    background-color: var(--accent-hover); 
-    transform: translateY(-1px);
-    box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
+.btn-download:hover {
+    background-color: #4f46e5;
 }
 
+/* ==========================================================================
+   INSTRUCTIONAL FRAMEWORK UTILITIES (.week3.html Targets)
+   ========================================================================== */
 .lesson-block {
-    margin-bottom: 40px;
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+}
+
+.lesson-block h1 {
+    font-size: 1.35rem;
+    color: var(--accent-indigo);
+    margin-bottom: 12px;
 }
 
 .lesson-block h3 {
+    font-size: 1.1rem;
+    margin-top: 18px;
+    margin-bottom: 8px;
     color: var(--text-primary);
-    font-size: 1.3rem;
-    margin-bottom: 16px;
-    font-weight: 600;
 }
 
-.lesson-block p, .lesson-block ul {
-    color: var(--text-secondary);
-    margin-bottom: 16px;
-}
-
-.code-block {
-    background-color: var(--code-bg);
-    color: var(--code-text);
-    padding: 20px;
-    border-radius: var(--radius-sm);
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    font-size: 0.9rem;
-    margin: 20px 0;
-    white-space: pre-wrap;
-    box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.output-block {
-    background-color: #f8fafc;
-    border-left: 4px solid var(--border-light);
-    padding: 16px 20px;
-    margin: 20px 0;
-    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-}
-
-.more-info {
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-light);
-    border-radius: var(--radius-sm);
-    padding: 16px;
-    margin: 20px 0;
-    transition: all 0.2s ease;
-}
-
-.more-info:hover {
-    border-color: var(--accent-color);
-}
-
-.more-info summary {
-    font-weight: 600;
-    color: var(--accent-color);
-    cursor: pointer;
-    list-style: none;
-    display: flex;
-    align-items: center;
-}
-
-.more-info summary::before {
-    content: '▶';
-    display: inline-block;
-    margin-right: 10px;
-    font-size: 0.7rem;
-    transition: transform 0.2s;
-}
-
-.more-info[open] summary::before {
-    transform: rotate(90deg);
-}
-
-.more-info p {
-    margin-top: 12px;
+.lesson-block p {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    padding-left: 20px;
-    border-left: 2px solid var(--border-light);
+    margin-bottom: 12px;
 }
 
-@media print {
-    body {
-        background-color: #020617 !important;
-        color: #f8fafc !important;
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-
-    .site-header,
-    .sidebar,
-    .btn-download,
-    .content-header {
-        display: none !important;
-    }
-
-    .layout-container {
-        display: block !important;
-        width: 100% !important;
-    }
-
-    .content-area,
-    .notes-container {
-        width: 100% !important;
-        padding: 0 !important;
-        margin: 0 !important;
-    }
-
-    .lesson-block {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-        margin-bottom: 24px !important;
-    }
-
-    .code-block {
-        page-break-inside: avoid !important;
-        break-inside: avoid !important;
-        white-space: pre-wrap !important;
-    }
+/* --- Expandable Tooltip Dropdowns --- */
+details.more-info {
+    background-color: var(--bg-tooltip);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+    margin: 12px 0;
 }
 
-@media screen and (max-width: 768px) {
-    .layout-container {
-        flex-direction: column;
-        min-height: auto;
-    }
-
-    .sidebar {
-        width: 100%;
-        min-width: 100%;
-        border-right: none !important;
-        border-bottom: 1px solid var(--site-accent, #6366f1) !important;
-        padding: 20px;
-    }
-
-    .content-area {
-        width: 100%;
-        padding: 24px 16px;
-    }
-
-    .content-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-    }
-
-    .btn-download {
-        width: 100%;
-        text-align: center;
-    }
+details.more-info summary {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-sky);
+    cursor: pointer;
+    outline: none;
+    user-select: none;
 }
 
+/* Aligns list counters and bullet indicators safely within card borders */
 details.more-info ol, 
 details.more-info ul {
     padding-left: 24px !important;
@@ -329,9 +218,26 @@ details.more-info ul {
 }
 
 details.more-info li {
-    margin-bottom: 8px;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
 }
 
+/* --- Monospace Code Layout Blocks --- */
+.code-block {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.85rem;
+    background-color: var(--bg-code);
+    color: var(--text-secondary);
+    border-left: 3px solid var(--accent-indigo);
+    padding: 12px;
+    margin: 14px 0;
+    border-radius: 4px;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* --- Clean Design System Data Reference Tables --- */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -340,21 +246,22 @@ table {
     background-color: rgba(0, 0, 0, 0.2);
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-light);
 }
 
 table th {
-    background-color: rgba(99, 102, 241, 0.1) !important;
-    color: #f8fafc;
+    background-color: rgba(99, 102, 241, 0.1);
+    color: var(--text-primary);
     font-weight: 700;
     padding: 12px 16px;
-    border-bottom: 2px solid var(--site-accent, #6366f1);
+    text-align: left;
+    border-bottom: 2px solid var(--accent-indigo);
 }
 
 table td {
     padding: 12px 16px;
-    color: #cbd5e1;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
     vertical-align: middle;
 }
 
@@ -364,4 +271,49 @@ table tbody tr:nth-child(even) {
 
 table tbody tr:hover {
     background-color: rgba(99, 102, 241, 0.03);
+}
+
+.font-mono {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+.text-indigo-400 {
+    color: #818cf8;
+}
+
+/* ==========================================================================
+   MOBILE RESPONSIVE BREAKPOINT OVERRIDES
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+    .layout-container {
+        flex-direction: column;
+    }
+    
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--border-light);
+        padding: 20px;
+    }
+    
+    .content-area {
+        width: 100%;
+        padding: 24px 16px;
+    }
+    
+    .content-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+    
+    .btn-download {
+        width: 100%;
+        text-align: center;
+    }
 }
