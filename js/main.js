@@ -3,57 +3,45 @@ function exportActiveLessonToPDF() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-    console.log("Maestro Notes initialized.");
-    
     const navLinks = document.querySelectorAll(".week-list a");
-    const contentContainer = document.getElementById("notes-content");
     const dynamicTitle = document.getElementById("dynamic-title");
-    const dynamicDownload = document.getElementById("dynamic-download");
-
-    async function loadContent(contentPath, pdfPath, title) {
-        try {
-            contentContainer.innerHTML = "<p>Loading...</p>";
-            
-            // Fetch the HTML snippet from the content folder
-            const response = await fetch(`content/${contentPath}`);
-            
-            if (!response.ok) throw new Error("Notes not found.");
-            
-            const html = await response.text();
-            
-            // Inject the HTML, update the title, and update the PDF link
-            contentContainer.innerHTML = html;
-            dynamicTitle.textContent = title;
-            dynamicDownload.href = `assets/${pdfPath}`;
-            dynamicDownload.setAttribute("download", pdfPath.split('/').pop());
-            
-        } catch (error) {
-            contentContainer.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
-        }
-    }
+    const dynamicWeek = document.getElementById("dynamic-week");
+    const notesContent = document.getElementById("notes-content");
 
     navLinks.forEach(link => {
         link.addEventListener("click", (e) => {
-            e.preventDefault(); 
-            
-            navLinks.forEach(nav => nav.classList.remove("active"));
+            e.preventDefault();
+
+            // 1. Clear previous active link highlights and set current
+            navLinks.forEach(l => l.classList.remove("active"));
             link.classList.add("active");
 
+            // 2. Fetch declarative course values from click target attributes
             const targetContent = link.getAttribute("data-content");
-            const targetPdf = link.getAttribute("data-pdf");
-            const newTitle = link.getAttribute("data-title");
+            const courseTitle = link.getAttribute("data-title");
+            const weekDesignation = link.getAttribute("data-week");
 
-            loadContent(targetContent, targetPdf, newTitle);
+            // 3. Update Text Content Headers (No more setting .href!)
+            if (dynamicTitle && courseTitle) {
+                dynamicTitle.textContent = courseTitle;
+            }
+            if (dynamicWeek && weekDesignation) {
+                dynamicWeek.textContent = weekDesignation;
+            }
+
+            // 4. Asynchronously fetch and load the clean content payload html file
+            notesContent.innerHTML = "<p>Loading content...</p>";
+            fetch(targetContent)
+                .then(response => {
+                    if (!response.ok) throw new Error("Module content file not found.");
+                    return response.text();
+                })
+                .then(html => {
+                    notesContent.innerHTML = html;
+                })
+                .catch(err => {
+                    notesContent.innerHTML = `<p style="color: #ef4444;">Error loading module: ${err.message}</p>`;
+                });
         });
     });
-
-    // Automatically load the first active link on page load
-    const initialLink = document.querySelector(".week-list a.active");
-    if(initialLink) {
-        loadContent(
-            initialLink.getAttribute("data-content"), 
-            initialLink.getAttribute("data-pdf"), 
-            initialLink.getAttribute("data-title")
-        );
-    }
 });
