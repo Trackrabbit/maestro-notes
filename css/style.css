@@ -52,7 +52,7 @@ body {
     margin-top: 4px;
 }
 
-/* --- 4. Layout --- */
+/* --- Layout Grid Constraints --- */
 .layout-container {
     display: flex;
     max-width: 1280px;
@@ -63,13 +63,36 @@ body {
 }
 
 /* ==========================================================================
-   INTERACTIVE SIDEBAR ACCORDION DRAWER LAYOUT
+   INDEPENDENTLY SCROLLABLE SIDEBAR ACCORDION DRAWER
    ========================================================================== */
 .sidebar {
     flex: 0 0 260px;
     background-color: transparent;
+    
+    /* FIX: Locks the sidebar height to the viewport window and allows independent scrolling */
     position: sticky;
     top: 40px;
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding-right: 8px; /* Adds a gap buffer for the native browser scrollbar track */
+}
+
+/* Elegant scrollbar integration for modern browser rendering engines */
+.sidebar::-webkit-scrollbar {
+    width: 5px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 10px;
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background: var(--text-secondary);
 }
 
 .sidebar h2 {
@@ -110,17 +133,18 @@ body {
     display: inline-block;
 }
 
-/* State management classes manipulated by the JS engine */
 .week-list {
     list-style: none;
     border-left: 2px solid var(--border-light);
     margin-left: 4px;
 }
 
+/* Hide collapsed elements smoothly */
 .week-list.collapsed {
     display: none !important;
 }
 
+/* Rotates indicator arrow smoothly down when parent class toggles open */
 .course-group.open .toggle-icon {
     transform: rotate(90deg);
     color: var(--accent-color);
@@ -164,7 +188,7 @@ body {
 }
 
 /* ==========================================================================
-   CONTENT WRWORKSPACE PANELS
+   CONTENT PANEL WORKSPACE STYLES
    ========================================================================== */
 .content-area {
     flex: 1;
@@ -208,7 +232,6 @@ body {
     box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
 }
 
-/* --- Core Elements Layout Matrix --- */
 .lesson-block {
     margin-bottom: 40px;
 }
@@ -258,7 +281,7 @@ body {
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
-/* --- Design System Reference Tables --- */
+/* --- Clean Data Table Architectures --- */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -286,7 +309,7 @@ table td {
 }
 
 table tbody tr:nth-child(even) {
-    background-color: #f8fafc/50;
+    background-color: rgba(248, 250, 252, 0.5);
 }
 
 .font-mono {
@@ -298,7 +321,7 @@ table tbody tr:nth-child(even) {
 }
 
 /* ==========================================================================
-   EXPANDABLE TOOLTIP CONTENT DESIGN RESTORATION
+   EXPANDABLE TOOLTIP DESIGN RESTORATION
    ========================================================================== */
 .more-info {
     background-color: var(--bg-surface);
@@ -356,7 +379,7 @@ table tbody tr:nth-child(even) {
 }
 
 /* ==========================================================================
-   MEDIA VIEWPORT MEDIA CONFIGURATIONS
+   MEDIA VIEWPORT INTERACTION PROPERTIES
    ========================================================================== */
 @media print {
     details {
@@ -387,6 +410,10 @@ table tbody tr:nth-child(even) {
         border-right: none !important;
         border-bottom: 1px solid var(--accent-color) !important;
         padding: 20px;
+        position: relative;
+        top: 0;
+        max-height: none;
+        overflow-y: visible;
     }
 
     .content-area {
