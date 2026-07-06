@@ -162,47 +162,51 @@ body {
 }
 
 /* ==========================================================================
-   RESTORED CLINICAL DESIGN SYSTEM — NO MORE BLOCK BACKGROUND OVERLAPS
+   INSTRUCTIONAL FRAMEWORK UTILITIES (.week3.html Targets)
    ========================================================================== */
-
 .lesson-block {
-    background-color: transparent !important; /* Strips out the contrasting dark slate card box fill */
-    border: none !important;                   /* Removes the restrictive container borders completely */
-    padding: 0 !important;                    /* Recovers original layout grid tracking margins */
-    margin-bottom: 40px;                      /* Maintains vertical separation between milestones */
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
 }
 
 .lesson-block h1 {
-    font-size: 1.5rem;
-    color: var(--text-primary);               /* Restores high-contrast pristine white title headers */
-    margin-bottom: 16px;
-    border-bottom: 1px solid var(--border-light);
-    padding-bottom: 8px;
+    font-size: 1.35rem;
+    color: var(--accent-indigo);
+    margin-bottom: 12px;
 }
 
 .lesson-block h3 {
-    font-size: 1.25rem;
-    margin-top: 24px;
-    margin-bottom: 12px;
-    color: var(--accent-indigo);              /* Locks lesson titles to clean signature indigo lines */
+    font-size: 1.1rem;
+    margin-top: 18px;
+    margin-bottom: 8px;
+    color: var(--text-primary);
 }
 
-/* --- Expandable Tooltip Reset --- */
+.lesson-block p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: 12px;
+}
+
+/* --- Expandable Tooltip Dropdowns --- */
 details.more-info {
-    background-color: transparent !important; /* Strips out the dark background fill inside dropdown boxes */
-    border: none !important;                   /* Removes borders to let text breathe flatly on the canvas */
-    border-left: 2px solid var(--accent-sky) !important; /* Maintains a razor-sharp sky-blue boundary line */
-    border-radius: 0 !important;
-    padding: 4px 0 4px 16px !important;       /* Indents content flatly relative to the active line */
-    margin: 16px 0;
+    background-color: var(--bg-tooltip);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    padding: 12px;
+    margin: 12px 0;
 }
 
 details.more-info summary {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
     font-weight: 600;
     color: var(--accent-sky);
     cursor: pointer;
-    margin-bottom: 8px;
+    outline: none;
+    user-select: none;
 }
 
 /* Aligns list counters and bullet indicators safely within card borders */
