@@ -1,3 +1,6 @@
+/* ==========================================================================
+   DESIGN SYSTEM STYLESHEET — CORE VARS
+   ========================================================================== */
 :root {
     --bg-page: #f4f7f9;
     --bg-surface: #ffffff;
@@ -59,6 +62,9 @@ body {
     align-items: flex-start;
 }
 
+/* ==========================================================================
+   INTERACTIVE SIDEBAR ACCORDION DRAWER LAYOUT
+   ========================================================================== */
 .sidebar {
     flex: 0 0 260px;
     background-color: transparent;
@@ -73,26 +79,56 @@ body {
     font-weight: 700;
 }
 
-.nav-list { list-style: none; }
-.course-group { margin-bottom: 24px; }
+.nav-list { 
+    list-style: none; 
+}
+
+.course-group { 
+    margin-bottom: 24px; 
+}
 
 .course-title {
-    display: block;
+    display: flex !important;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
     font-weight: 700;
     color: var(--text-primary);
     margin-bottom: 12px;
     font-size: 0.8rem;
     text-transform: uppercase;
     letter-spacing: 1px;
+    user-select: none;
+    cursor: pointer;
+    width: 100%;
 }
 
+.toggle-icon {
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    transition: transform 0.2s ease;
+    display: inline-block;
+}
+
+/* State management classes manipulated by the JS engine */
 .week-list {
     list-style: none;
     border-left: 2px solid var(--border-light);
     margin-left: 4px;
 }
 
-.week-list li { margin-bottom: 4px; }
+.week-list.collapsed {
+    display: none !important;
+}
+
+.course-group.open .toggle-icon {
+    transform: rotate(90deg);
+    color: var(--accent-color);
+}
+
+.week-list li { 
+    margin-bottom: 4px; 
+}
 
 .week-list a {
     text-decoration: none;
@@ -127,6 +163,9 @@ body {
     background-color: var(--accent-color);
 }
 
+/* ==========================================================================
+   CONTENT WRWORKSPACE PANELS
+   ========================================================================== */
 .content-area {
     flex: 1;
     background-color: var(--bg-surface);
@@ -169,8 +208,16 @@ body {
     box-shadow: 0 4px 6px rgba(14, 165, 233, 0.3);
 }
 
+/* --- Core Elements Layout Matrix --- */
 .lesson-block {
     margin-bottom: 40px;
+}
+
+.lesson-block h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text-primary);
 }
 
 .lesson-block h3 {
@@ -180,11 +227,14 @@ body {
     font-weight: 600;
 }
 
-.lesson-block p, .lesson-block ul {
+.lesson-block p {
     color: var(--text-secondary);
     margin-bottom: 16px;
 }
 
+/* ==========================================================================
+   CODE SYNTAX AND UTILITY CONTAINERS
+   ========================================================================== */
 .code-block {
     background-color: var(--code-bg);
     color: var(--code-text);
@@ -208,6 +258,48 @@ body {
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
 }
 
+/* --- Design System Reference Tables --- */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 0.9rem;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+table th {
+    background-color: #f8fafc;
+    color: var(--text-primary);
+    font-weight: 600;
+    padding: 12px 16px;
+    text-align: left;
+    border-bottom: 2px solid var(--border-light);
+}
+
+table td {
+    padding: 12px 16px;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-light);
+    vertical-align: middle;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #f8fafc/50;
+}
+
+.font-mono {
+    font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, monospace;
+}
+
+.font-semibold {
+    font-weight: 600;
+}
+
+/* ==========================================================================
+   EXPANDABLE TOOLTIP CONTENT DESIGN RESTORATION
+   ========================================================================== */
 .more-info {
     background-color: var(--bg-surface);
     border: 1px solid var(--border-light);
@@ -250,6 +342,22 @@ body {
     border-left: 2px solid var(--border-light);
 }
 
+.more-info ul, 
+.more-info ol {
+    padding-left: 24px !important;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+}
+
+.more-info li {
+    margin-bottom: 6px;
+    color: var(--text-secondary);
+}
+
+/* ==========================================================================
+   MEDIA VIEWPORT MEDIA CONFIGURATIONS
+   ========================================================================== */
 @media print {
     details {
         display: block !important;
@@ -277,7 +385,7 @@ body {
         width: 100%;
         min-width: 100%;
         border-right: none !important;
-        border-bottom: 1px solid var(--site-accent, #6366f1) !important;
+        border-bottom: 1px solid var(--accent-color) !important;
         padding: 20px;
     }
 
@@ -296,16 +404,4 @@ body {
         width: 100%;
         text-align: center;
     }
-}
-
-.more-info ul, 
-.more-info ol {
-    padding-left: 24px !important;
-    margin-top: 8px;
-    margin-bottom: 8px;
-}
-
-.more-info li {
-    margin-bottom: 6px;
-    color: var(--text-secondary);
 }
