@@ -1,0 +1,162 @@
+<div class="lesson-block">
+    <h1>Milestone 1: Linear Abstract Data Types & Interaction Models</h1>
+    <p>
+        Data structure topologies are governed by explicit constraints regulating how elements enter and exit address memory space. Re-engineering these computational tracks requires evaluating two distinct data flows: **LIFO** and **FIFO**.
+    </p>
+
+    <h3>Lessons 1 & 2: The Stack Paradigm & LIFO Mechanics</h3>
+    <p>
+        The <strong>Stack</strong> abstract data type operates on a strict **Last-In, First-Out (LIFO)** protocol. Elements are pushed and popped from a single active memory offset designated as the **top** of the stack. Lower elements are structurally preserved but completely inaccessible until the top items are cleared.
+    </p>
+    
+    [Image of Stack Data Structure LIFO Model]
+
+    <details class="more-info">
+        <summary>📘 Click to Expand: Real-World Stack System Implementations</summary>
+        <ul>
+            <li><strong>Text Editor Undo Engines:</strong> Each discrete character modification or stroke is pushed onto a transaction stack; an undo operation pops the most recent transaction block first.</li>
+            <li><strong>Browser Back Navigation:</strong> Current URI paths are pushed sequentially onto a stack frame; hitting 'Back' pops the top path node to revert to the immediate predecessor state.</li>
+            <li><strong>Locker/Backspace Operations:</strong> Deleting string tokens backward from the tail end of an array line mirrors pure stack pop extraction.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Functional Paradigm: Simulating a Bounded LIFO Transaction Stack
+transaction_stack = []
+
+# Push Operations: Elements concatenate strictly to the top (tail block)
+transaction_stack.append("mutation_node_01")
+transaction_stack.append("mutation_node_02")
+transaction_stack.append("mutation_node_03")
+
+# Pop Operation: Extract top node
+if len(transaction_stack) > 0:
+    active_node = transaction_stack.pop()  # Yields "mutation_node_03"
+    </div>
+
+    <h3>Lessons 7 & 8: The Queue Paradigm & FIFO Turn-Taking</h3>
+    <p>
+        The <strong>Queue</strong> data structure uses a **First-In, First-Out (FIFO)** entry protocol. Elements join the structure at a boundary node designated as the **back** and are extracted exclusively from the opposing boundary designated as the **front**. This architecture is optimal for handling multi-agent asynchronous tasks fairly.
+    </p>
+    
+    [Image of Queue Data Structure FIFO Model]
+
+    <details class="more-info">
+        <summary>🧐 Click to Expand: System Applications of FIFO Queues</summary>
+        <ul>
+            <li><strong>Asynchronous Print Spoolers:</strong> Network document payloads are queued in arrival order; the spooler processes jobs from front to back to maintain absolute fairness.</li>
+            <li><strong>Supermarket Checkout / Ticket Lines:</strong> Multi-agent structures that process items strictly in the order they arrive, ensuring fairness.</li>
+            <li><strong>Inventory Refresh Logistics:</strong> Perishable asset systems (e.g., cold storage grocery pipelines) pull out the oldest assets first to prevent expiration losses.</li>
+        </ul>
+    </details>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 2: Python Interface and Complexity Management</h1>
+    <p>
+        Implementing linear collections using standard Python primitives requires analyzing algorithmic execution costs and guarding against runtime memory boundaries.
+    </p>
+
+    <h3>Lessons 3 & 4: Python List Stacks & Underflow Safeguards</h3>
+    <p>
+        A standard Python list serves as a high-performance stack implementation. <code>list.append()</code> handles push actions, and <code>list.pop()</code> handles pop operations at the end of the array. To prevent application crashes from **Stack Underflow**, you must check the array's size before running a pop operation.
+    </p>
+
+    <div class="code-block">
+# Safe Bounded Stack Interface with Underflow Guardrails
+def execute_safe_pop(stack_reference):
+    # Truthiness or length verification guards the block from runtime errors
+    if stack_reference:
+        return stack_reference.pop()
+    return "Underflow Blocked: Stack contains zero elements."
+    </div>
+
+    <h3>Lessons 9 & 10: Array Queues vs. Dedicated Deque Performance</h3>
+    <p>
+        A basic Python list can simulate a queue by pairing <code>list.append()</code> with <code>list.pop(0)</code>. However, using <code>pop(0)</code> forces an expensive linear operation because every remaining element must shift one slot left in memory. For heavy workloads, using collections.deque offers constant-time efficiency.
+    </p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th style="width: 25%;">Operation Type</th>
+                <th style="width: 35%;">Standard Python List Primitive</th>
+                <th style="width: 40%;">Optimized `collections.deque` Element</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-mono">Enqueue (Back)</td>
+                <td class="font-mono">list.append() — O(1)</td>
+                <td class="font-mono">deque.append() — O(1) Amortized</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Dequeue (Front)</td>
+                <td class="font-mono" style="color: #ef4444;">list.pop(0) — O(n) Heavy Shift</td>
+                <td class="font-mono" style="color: var(--accent-hover);">deque.popleft() — O(1) Constant Cost</td>
+            </tr>
+            <tr>
+                <td class="font-mono">Underflow Guard</td>
+                <td><code>if len(list) > 0:</code></td>
+                <td><code>if deque_reference:</code></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="code-block">
+# High-Efficiency FIFO Queue Processing using collections.deque
+from collections import deque
+
+task_pipeline = deque()
+task_pipeline.append("job_alpha")   # Enqueue
+task_pipeline.append("job_bravo")   # Enqueue
+
+if task_pipeline:
+    active_job = task_pipeline.popleft()  # Dequeue: Constant Time O(1)
+    </div>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 3: Composite Topologies & Nested Application Engine</h1>
+    <p>
+        Complex system challenges require nesting abstract data types inside one another, matching diverse business requirements within unified architectural layouts.
+    </p>
+
+    <h3>Lessons 5 & 12: Nested Topologies — The Dungeon Simulation</h3>
+    <p>
+        The "Dungeon Simulation" model demonstrates a multi-layered topology: an outer FIFO queue that processes incoming agents in strict arrival order, where each agent holds an internal LIFO stack representing their personal item inventory.
+    </p>
+
+    <div class="code-block">
+# Production Pipeline: Outer FIFO Queue containing Inner LIFO Stacks
+from collections import deque
+
+# 1. Initialize Outer Queue
+adventurer_line = deque()
+
+# 2. Build Composite Objects with Local LIFO Item Arrays
+agent_aria = {
+    "name": "Aria",
+    "backpack": ["potion", "torch", "key"]  # Top of stack is "key"
+}
+
+agent_borin = {
+    "name": "Borin",
+    "backpack": ["bread", "shield"]         # Top of stack is "shield"
+}
+
+# Enqueue agents into arrival pipeline (FIFO Track)
+adventurer_line.append(agent_aria)
+adventurer_line.append(agent_borin)
+
+# 3. Process Nested Data Pipelines
+while adventurer_line:
+    active_agent = adventurer_line.popleft()  # FIFO Extraction (Front Node)
+    print(f"Agent Engine Active: {active_agent['name']}")
+    
+    # Process internal inventory stack (LIFO Extraction)
+    while active_agent["backpack"]:
+        extracted_item = active_agent["backpack"].pop()  # LIFO pop from top
+        print(f" -> {active_agent['name']} deployed structural asset: {extracted_item}")
+    </div>
+</div>
