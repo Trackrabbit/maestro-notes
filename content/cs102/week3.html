@@ -1,0 +1,181 @@
+<div class="lesson-block">
+    <h1>Milestone 1: Algorithmic Thinking & Pseudocode Architecture</h1>
+    <p>
+        An <strong>algorithm</strong> is an ordered, deterministic sequence of unambiguous instructions designed to solve a specific computational or real-world problem within a finite number of execution steps. It functions as a declarative recipe: given a specific input state, it executes sequential operations to reliably guarantee a predictable output state.
+    </p>
+
+    <h3>Lessons 1 & 2: Structural Recipes & Hidden Everyday Heuristics</h3>
+    <p>
+        Algorithms exist independently of programming languages. Everyday routines—such as executing a multi-step sequence to brew coffee, triaging patients in an emergency room, or navigating via GPS—are behavioral heuristics that fulfill the formal requirements of an algorithm: order, completeness, and repeatability.
+    </p>
+    
+    <details class="more-info">
+        <summary>📘 Click to Expand: Formal Algorithmic Criteria</summary>
+        <ul>
+            <li><strong>Finiteness:</strong> The execution sequence must terminate after a specific, bounded count of processing operations.</li>
+            <li><strong>Definiteness:</strong> Each processing block must be precisely defined, leaving zero room for computational ambiguity.</li>
+            <li><strong>Input/Output Bounds:</strong> Takes zero or more bounded inputs and produces one or more verified output states.</li>
+            <li><strong>Feasibility:</strong> Every operation must be basic enough to be executed exactly by the underlying hardware architecture.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Algorithmic Sequence: Browser Tab Navigation Emulation
+def navigate_to_resource(target_url):
+    # Step 1: Instantiate network interface hook
+    browser_active = True
+    # Step 2: Open isolated sandboxed context window
+    active_tab = "blank_canvas"
+    # Step 3: Populate context buffer with target locator string
+    address_bar = target_url
+    # Step 4: Resolve network handshake and render output state
+    return f"Context {active_tab} successfully routed to resolved address: {address_bar}"
+    </div>
+
+    <h3>Lesson 3: High-Granularity Pseudocode Design & Dependency Mapping</h3>
+    <p>
+        Translating human problem-solving tracks into optimized machine instructions requires strict structural discipline. High-quality pseudocode must pass the <strong>Granularity Test</strong> (exactly one single action/verb per instruction row) and honor <strong>Dependency Constraints</strong> (no execution block can reference variables or states that have not been explicitly established by predecessor blocks).
+    </p>
+
+    <div class="code-block">
+# Hierarchical Pseudocode Model: Bounded Kitchen Operation Pipeline
+# 0.0 Setup baseline environmental variables
+# 1.0 Isolate and prepare hardware assets
+#   1.1 Preheat localized heating element over medium-high thermal threshold
+#   1.2 Verify clean plate and structural utensils are mapped into active workspace
+# 2.0 Extract inventory payloads from cold storage allocations
+#   2.1 Query refrigeration system for required raw protein (bacon_units)
+#   2.2 Query pantry allocation array for required grain carbohydrates (bread_slices)
+# 3.0 Execute transformation loops (Cooking Operations)
+#   3.1 Introduce protein payload to preheated element
+#   3.2 Initialize toaster element with grain carbohydrates
+#   3.3 Evaluate protein state: invert payload when structural side transitions to golden-brown
+#   3.4 Terminate thermal exposure upon fulfillment of baseline safety parameters
+    </div>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 2: The Complexity Blueprint & Big O Notation Deep-Dive</h1>
+    <p>
+        As systems scale, counting precise physical execution times becomes useless due to hardware variances. Instead, computer science evaluates algorithms based on <strong>asymptotic complexity</strong>—tracking how the count of basic processing operations scales relative to an input size denoted as $n$.
+    </p>
+
+    <h3>Lessons 5 & 6: Mathematical Step Counting & Complexity Frameworks</h3>
+    <p>
+        A <strong>basic step</strong> represents an atomic hardware operation that executes in constant time (e.g., a single variable assignment, an arithmetic evaluation, or a boolean comparison). Algorithmic complexity analyzes whether the processing burden scales linearly, quadratically, or exponentially when input volume scales up.
+    </p>
+
+    <div class="code-block">
+# Step Counting Tracker Loop Matrix (3 Basic Steps Per Element Node)
+def process_party_robot_loop(guest_list):
+    step_counter = 0
+    for guest in guest_list:
+        # Step A: Perform read assignment operation
+        active_guest = guest
+        step_counter += 1
+        
+        # Step B: Execute default output stream write
+        print(f"Executing standard greeting buffer to: {active_guest}")
+        step_counter += 1
+        
+        # Step C: Log localized physical interaction metric
+        print("Registering hardware high-five operation telemetry.")
+        step_counter += 1
+        
+    return f"Total input nodes (n) = {len(guest_list)} | Executed hardware operations = {step_counter} steps."
+    </div>
+
+    <h3>Lesson 7: Master Reference Matrix — Asymptotic Growth Rates</h3>
+    <p>
+        Big O notation characterizes the performance limit of an algorithm by focusing strictly on the dominant highest-order term as $n$ approaches infinity, disregarding lower-order coefficients and system hardware constants.
+    </p>
+    
+    <details class="more-info">
+        <summary>🧠 Click to Expand: Comprehensive Mathematical Classes & Scaling Feelings</summary>
+        <ul>
+            <li><strong>O(1) — Constant Time:</strong> The processing burden remains completely locked, invariant to the scale of $n$. Jumps straight to an address offset (e.g., index dictionary lookup). <em>Feel: Scale-free speed.</em></li>
+            <li><strong>O(n) — Linear Time:</strong> Processing costs scale one-for-one with input size. Doubling $n$ doubles the executed step count. Typical of single-pass arrays scans. <em>Feel: Balanced, predictable growth.</em></li>
+            <li><strong>O(n²) — Quadratic/Polynomial Time:</strong> Costs scale proportional to the square of $n$. Doubling data inputs causes a massive 4x explosion in processing steps. Classic indicator of nested loops over flat lists. <em>Feel: Performance slowdown at scale.</em></li>
+            <li><strong>O(2ⁿ) — Exponential Time:</strong> Processing cycles double with the introduction of every single additional data node. Impractical for production systems beyond minimal testing bounds. <em>Feel: Hardware meltdown threshold.</em></li>
+        </ul>
+    </details>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Big O Complexity Class</th>
+                <th>Data Scaling Behavior (n = 10)</th>
+                <th>Data Scaling Behavior (n = 100)</th>
+                <th>Data Scaling Behavior (n = 10,000)</th>
+                <th>Hardware Performance Impact Profile</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-mono">O(1) Constant</td>
+                <td>1 Operational Unit</td>
+                <td>1 Operational Unit</td>
+                <td>1 Operational Unit</td>
+                <td class="font-semibold" style="color: var(--accent-hover);">Optimal — Scale-Insensitive Allocation</td>
+            </tr>
+            <tr>
+                <td class="font-mono">O(n) Linear</td>
+                <td>10 Operational Units</td>
+                <td>100 Operational Units</td>
+                <td>10,000 Operational Units</td>
+                <td style="color: var(--text-primary);">Highly Sustainable — Single-Pass Pipelines</td>
+            </tr>
+            <tr>
+                <td class="font-mono">O(n²) Quadratic</td>
+                <td>100 Operational Units</td>
+                <td>10,000 Operational Units</td>
+                <td>100,000,000 Units</td>
+                <td style="color: #f97316; font-weight: 600;">Dangerous — Bounded strictly to compact lists</td>
+            </tr>
+            <tr>
+                <td class="font-mono">O(2ⁿ) Exponential</td>
+                <td>1,024 Units</td>
+                <td>~1.26 &times; 10³⁰ Units</td>
+                <td>Infinite Loop (Crash)</td>
+                <td style="color: #ef4444; font-weight: 600;">Critical Hazard — Immediate System Exhaustion</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 3: Algorithmic Optimization & Defensive Engineering</h1>
+    <p>
+        Engineering optimized applications requires evaluating structural trade-offs, refactoring mathematical search algorithms, and inserting protective barriers against erratic input types.
+    </p>
+
+    <h3>Lesson 10: Comparative Refactoring — Two-Sum Execution Models</h3>
+    <p>
+        The Two-Sum problem highlights the power of complexity refactoring: transitioning from a raw brute-force pair checker with nested iteration tracking loops to a single-pass address lookup pipeline utilizing set lookups.
+    </p>
+
+    <div class="code-block">
+# Optimization Strategy: Refactoring from O(n²) Brute-Force to O(n) Hash Memory Lookups
+
+# Approach A: Brute-Force Double-Iteration Loop — Time Complexity: O(n²) | Space Complexity: O(1)
+def two_sum_bruteforce(nums, target):
+    for i in range(len(nums)):
+        for j in range(i + 1, len(nums)):
+            if nums[i] + nums[j] == target:
+                return True
+    return False
+
+# Approach B: Optimized Single-Pass Lookups — Time Complexity: O(n) | Space Complexity: O(n)
+def two_sum_optimized(nums, target):
+    seen_addresses = set()
+    for active_value in nums:
+        complement_needed = target - active_value
+        if complement_needed in seen_addresses:
+            return True
+        seen_addresses.add(active_value)
+    return False
+    </div>
+
+    <h3>Lesson 11: Defensive Design Architecture & Guard Clauses</h3>
+    <p>
+        Production-ready algorithms must decouple unusual boundary values (<strong>Edge Cases</strong>, such as empty data collection frames <code>[]</code>) from structurally flawed components (<strong>Invalid Inputs</strong>, such as negative integers where lengths are required). High
