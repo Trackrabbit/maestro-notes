@@ -9,17 +9,17 @@
         A basic linear search traverses an unsorted collection sequentially from left to right, comparing each node directly against the target. The operational workload (the comparison step count) is highly dependent on where the element resides within the collection.
     </p>
     
-    <div class="output-block font-mono" style="white-space: pre; line-height: 1.4;">
-Target: 7  (Unsorted Collection)
+    <div class="output-block font-mono" style="white-space: pre; line-height: 1.4; overflow-x: auto;">
+Target: 7  (Unsorted Collection Data Frame)
 +---------+---------+---------+---------+---------+
 |   14    |    3    |    8    |    7    |   22    |
 +---------+---------+---------+---------+---------+
   Index 0   Index 1   Index 2   Index 3   Index 4
 
-Step 1: [14] == 7? No  --&gt; Move Right
-Step 2: [ 3] == 7? No  --&gt; Move Right
-Step 3: [ 8] == 7? No  --&gt; Move Right
-Step 4: [ 7] == 7? YES --&gt; Early Exit / Match Found! (4 Comparisons)
+Step 1: [14] == 7? No  --&gt; Increment Pointer Rightward
+Step 2: [ 3] == 7? No  --&gt; Increment Pointer Rightward
+Step 3: [ 8] == 7? No  --&gt; Increment Pointer Rightward
+Step 4: [ 7] == 7? YES --&gt; Early Exit / Match Found! (Total: 4 Comparisons)
     </div>
 
     <details class="more-info">
@@ -57,7 +57,7 @@ def linear_search_telemetry(collection, target):
         The <strong>Binary Search</strong> algorithm requires that the target collection be pre-sorted. By maintaining two pointer offsets (<code>low</code> and <code>high</code>), it calculates a middle division node (<code>mid</code>). If a match is not found immediately, it discards exactly half of the remaining address space, dropping time complexity down to a highly sustainable profile.
     </p>
     
-    <div class="output-block font-mono" style="white-space: pre; line-height: 1.4;">
+    <div class="output-block font-mono" style="white-space: pre; line-height: 1.4; overflow-x: auto;">
 Target: 15 (Pre-Sorted Collection Frame, n = 7)
 
 INITIAL STEP:
@@ -154,45 +154,4 @@ def binary_search_trace(sorted_data, target):
     <details class="more-info">
         <summary>🧐 Click to Expand: Quadratic Sorting Paradigms</summary>
         <ul>
-            <li><strong>Bubble Sort (Neighbor-Swapping):</strong> Iteratively scans a collection, swapping adjacent pairs if they violate the sorted order. This forces the largest values to gradually "bubble" rightward toward the tail. Runs in $\Theta(n^2)$ time.</li>
-            <li><strong>Insertion Sort (Left-Sliding):</strong> Iteratively builds a sorted boundary frame on the left side of the list. It takes each new element (the "key") and slides it leftward into place. This is highly efficient ($\Theta(n)$) on nearly-sorted data.</li>
-        </ul>
-    </details>
-
-    <div class="code-block">
-# Structural Reference: Insertion Sort Copy Engine (Preserves In-Place Constraints)
-def insertion_sort_isolated(nums):
-    nums_copy = list(nums)  # Construct independent memory slice
-    for i in range(1, len(nums_copy)):
-        key = nums_copy[i]
-        j = i - 1
-        # Inner Loop: Slide elements rightward to make room for the key
-        while j &gt;= 0 and key &lt; nums_copy[j]:
-            nums_copy[j + 1] = nums_copy[j]
-            j -= 1
-        nums_copy[j + 1] = key
-    return nums_copy
-    </div>
-
-    <h3>Lessons 13 & 14: Native Python Sorting & Composite Stable Contracts</h3>
-    <p>
-        Production-ready applications rely on Python's built-in sorting tools (which implement <strong>Timsort</strong>). Python's sort is guaranteed to be <strong>stable</strong>, meaning elements with equal keys maintain their original relative order. This feature allows for clean, multi-pass composite sort sequences.
-    </p>
-
-    <div class="code-block">
-# Production Strategy: Multi-Criteria Leaderboard Sorting using Composite Keys
-leaderboard_data = [
-    {"name": "Ava", "score": 100, "level": 3},
-    {"name": "Ben", "score": 150, "level": 2},
-    {"name": "Cara", "score": 150, "level": 5},
-    {"name": "Dan", "score": 90, "level": 2}
-]
-
-# Rule: Sort by score descending, then by level descending, then by name ascending
-# Negation trick '-' inverses default ascending numeric sorting models inside the tuple
-calibrated_leaderboard = sorted(
-    leaderboard_data, 
-    key=lambda item: (-item["score"], -item["level"], item["name"])
-)
-    </div>
-</div>
+            <li><strong>Bubble Sort (Neighbor-Swapping):</strong> Iteratively scans a collection, swapping adjacent pairs if they violate the sorted order. This forces the largest values
