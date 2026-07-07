@@ -1,0 +1,164 @@
+<div class="lesson-block">
+    <h1>Milestone 1: Search Topologies & Linear Iteration Space</h1>
+    <p>
+        In computer science, a <strong>search problem</strong> consists of an active target node situated within an indexed data collection frame. The fundamental mechanics of searching require evaluating structural configurations (sorted vs. unsorted collections) to optimize retrieval performance.
+    </p>
+
+    <h3>Lessons 1 & 2: The Linear Search Paradigm & Target-Collection Mechanics</h3>
+    <p>
+        A basic linear search traverses an unsorted collection sequentially from left to right, comparing each node directly against the target. The operational workload (the comparison step count) is highly dependent on where the element resides within the collection.
+    </p>
+    
+    [Image of Linear Search Sequential Scan Model]
+
+    <details class="more-info">
+        <summary>📘 Click to Expand: Structural Target Positions</summary>
+        <ul>
+            <li><strong>Best Case (First Offset):</strong> Target is located at index 0. Operational burden is exactly 1 step lookup comparison, independent of collection size.</li>
+            <li><strong>Worst Case (Final Offset / Missing):</strong> Target is located at the final tail offset (index $n-1$) or is entirely absent from the collection. The loop must execute exactly $n$ sequential comparisons.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Simulation: Sequential Linear Search with Explicit Operation Telemetry
+def linear_search_telemetry(collection, target):
+    comparisons = 0
+    found_flag = False
+    
+    for item in collection:
+        comparisons += 1
+        if item == target:
+            found_flag = True
+            break  # Early exit protocol to optimize processing loops
+            
+    return {"found": found_flag, "total_comparisons": comparisons}
+    </div>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 2: Asymptotic Search Scaling & Binary Splitting</h1>
+    <p>
+        As arrays expand to hold massive data sets, linear scanning becomes highly inefficient. Shifting to logarithmic performance profiles requires enforcing pre-sorted memory invariants.
+    </p>
+
+    <h3>Lessons 3 & 4: Binary Search & The Logarithmic Halving Blueprint</h3>
+    <p>
+        The <strong>Binary Search</strong> algorithm requires that the target collection be pre-sorted. By maintaining two pointer offsets (<code>low</code> and <code>high</code>), it calculates a middle division node (<code>mid</code>). If a match is not found immediately, it discards exactly half of the remaining address space, dropping time complexity down to a highly sustainable profile.
+    </p>
+    
+    [Image of Binary Search Divide and Conquer Framework]
+
+    <div class="code-block">
+# Safe Binary Search Implementation under Asymptotic O(log n) Performance
+def binary_search_trace(sorted_data, target):
+    low = 0
+    high = len(sorted_data) - 1
+    steps = 0
+    
+    while low <= high:
+        mid = (low + high) // 2
+        steps += 1  # Track each mid-point comparison step
+        
+        if sorted_data[mid] == target:
+            return {"index": mid, "executed_steps": steps}
+        elif sorted_data[mid] < target:
+            low = mid + 1  # Discard lower half of iteration frame
+        else:
+            high = mid - 1  # Discard upper half of iteration frame
+            
+    return {"index": -1, "executed_steps": steps}
+    </div>
+
+    <h3>Lessons 5 & 6: Master Reference Matrix — Linear vs. Logarithmic Performance</h3>
+    <p>
+        The architectural decision matrix between linear search ($O(n)$) and binary search ($O(\log n)$) highlights why pre-sorting data is vital for scalable software engineering.
+    </p>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Collection Scale ($n$)</th>
+                <th>Linear Search Max Cost ($O(n)$)</th>
+                <th>Binary Search Max Cost ($O(\log n)$)</th>
+                <th>Algorithmic Selection Rule-of-Thumb</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td class="font-mono">n = 10 Elements</td>
+                <td>10 Comparisons</td>
+                <td>~3–4 Comparisons</td>
+                <td class="font-semibold">Linear Search: Simplest path for small unsorted structures.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">n = 1,000 Elements</td>
+                <td>1,000 Comparisons</td>
+                <td>~10 Comparisons</td>
+                <td>Binary Search: Clear performance win if data is sorted.</td>
+            </tr>
+            <tr>
+                <td class="font-mono">n = 1,000,000 Elements</td>
+                <td>1,000,000 Comparisons</td>
+                <td>~20 Comparisons</td>
+                <td style="color: var(--accent-hover); font-weight: 600;">Critical Boundary: Binary search is mandatory for scale.</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 3: Sorting Approaches & Composite Data Contracts</h1>
+    <p>
+        Sorting transitions data from chaotic sets into structured arrays, enabling advanced reporting and clean analytical summaries (e.g., Top-N slicing, medians, and outlier detection).
+    </p>
+
+    <h3>Lessons 7–10: Bubble Sort vs. Insertion Sort Architectures</h3>
+    <p>
+        Classic sorting approaches vary significantly in performance, particularly when handling partially pre-sorted datasets. 
+    </p>
+    
+    <details class="more-info">
+        <summary>🧐 Click to Expand: Quadratic Sorting Paradigms</summary>
+        <ul>
+            <li><strong>Bubble Sort (Neighbor-Swapping):</strong> Iteratively scans a collection, swapping adjacent pairs if they violate the sorted order. This forces the largest values to gradually "bubble" rightward toward the tail. Runs in $\Theta(n^2)$ time.</li>
+            <li><strong>Insertion Sort (Left-Sliding):</strong> Iteratively builds a sorted boundary frame on the left side of the list. It takes each new element (the "key") and slides it leftward into place. This is highly efficient ($\Theta(n)$) on nearly-sorted data.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Structural Reference: Insertion Sort Copy Engine (Preserves In-Place Constraints)
+def insertion_sort_isolated(nums):
+    nums_copy = list(nums)  # Construct independent memory slice
+    for i in range(1, len(nums_copy)):
+        key = nums_copy[i]
+        j = i - 1
+        # Inner Loop: Slide elements rightward to make room for the key
+        while j >= 0 and key &lt; nums_copy[j]:
+            nums_copy[j + 1] = nums_copy[j]
+            j -= 1
+        nums_copy[j + 1] = key
+    return nums_copy
+    </div>
+
+    <h3>Lessons 13 & 14: Native Python Sorting & Composite Stable Contracts</h3>
+    <p>
+        Production-ready applications rely on Python's built-in sorting tools (which implement <strong>Timsort</strong>). Python's sort is guaranteed to be <strong>stable</strong>, meaning elements with equal keys maintain their original relative order. This feature allows for clean, multi-pass composite sort sequences.
+    </p>
+
+    <div class="code-block">
+# Production Strategy: Multi-Criteria Leaderboard Sorting using Composite Keys
+leaderboard_data = [
+    {"name": "Ava", "score": 100, "level": 3},
+    {"name": "Ben", "score": 150, "level": 2},
+    {"name": "Cara", "score": 150, "level": 5},
+    {"name": "Dan", "score": 90, "level": 2}
+]
+
+# Rule: Sort by score descending, then by level descending, then by name ascending
+# Negation trick '-' inverses default ascending numeric sorting models inside the tuple
+calibrated_leaderboard = sorted(
+    leaderboard_data, 
+    key=lambda item: (-item["score"], -item["level"], item["name"])
+)
+    </div>
+</div>
