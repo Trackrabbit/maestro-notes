@@ -1,0 +1,107 @@
+<div class="lesson-block">
+    <h1>Milestone 1: Foundations of Structure & Index Mechanics</h1>
+    <p>
+        In computer science, a <strong>data structure</strong> is a specialized format engineered for organizing, storing, and retrieving data efficiently. Selecting an optimal structure depends entirely on the layout patterns and retrieval methods demanded by your application architecture.
+    </p>
+
+    <h3>Lessons 2 & 4: Structural Selection — Arrays vs. Dictionaries</h3>
+    <p>
+        Data structures bifurcate based on access mechanics: position-based sequential tracks (arrays or Python lists) and custom label-based mapping systems (dictionaries).
+    </p>
+    
+    <details class="more-info">
+        <summary>📘 Click to Expand: Structural Allocation Rules</summary>
+        <ul>
+            <li><strong>Arrays / Lists:</strong> An ordered row of sequential slots. Each slot is accessible solely by its fixed positional index, making it ideal for groups of homogeneous values (e.g., temperatures or test scores).</li>
+            <li><strong>Dictionaries:</strong> Labeled address spaces mapping unique, custom keys to distinct values, optimized for composite, multi-attribute profiles (e.g., student name, age, and email records).</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# Allocation Choice: Position-Based Array vs. Custom Labeled Mapping
+temperature_array = [7, 18, 75, 35]  # Positional chronological order
+
+student_dictionary = {
+    "name": "Jordan",
+    "age": 21,
+    "email": "jordan@example.com"
+}
+    </div>
+
+    <h3>Lessons 3 & 5: Positional Access & Complexity Baselines</h3>
+    <p>
+        Retrieving values from an index-based data structure occurs via zero-based indexing or sequential linear scanning. These methods carry starkly different performance costs as memory structures expand.
+    </p>
+
+    <details class="more-info">
+        <summary>🧐 Click to Expand: Time Complexity Mapping</summary>
+        <ul>
+            <li><strong>Direct Index Access — O(1):</strong> Jumping straight to a known address slot (e.g., <code>items[3]</code>). The operations cost remains constant, completely independent of total array size.</li>
+            <li><strong>Sequential Scan — O(n):</strong> Traversing the array slot-by-slot from index 0 when the target index is unknown. The operational cost scales linearly with the total element volume $n$.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# O(1) Constant Lookup vs. O(n) Linear Search Scan Execution
+numbers_list = list(range(1, 100001))
+
+# Direct Index Access: Constant Cost O(1)
+immediate_value = numbers_list[50000]
+
+# Sequential Scan Search: Linear Cost O(n)
+target_value = 50001
+for element in numbers_list:
+    if element == target_value:
+        break
+    </div>
+</div>
+
+<div class="lesson-block">
+    <h1>Milestone 2: Element Manipulation & Operational Sequencing</h1>
+    <p>
+        Modifying an index-based array requires combining values, inserting items, and handling deletions while precisely tracking memory index shifts.
+    </p>
+
+    <h3>Lessons 6 & 7: Mutation Mechanics — Updates, Slippage, and Aliases</h3>
+    <p>
+        Updating values by index modifies memory inline without duplicating the underlying object array. However, assigning multiple variables to the same structure introduces <strong>aliasing traps</strong> where mutations scale down shared references. Removing data causes immediate structural index slippage.
+    </p>
+
+    <details class="more-info">
+        <summary>🔬 Click to Expand: Mutation & Removal API Operations</summary>
+        <ul>
+            <li><code>array[index] = value</code>: Overwrites the data bit inline at that exact offset. No extra memory is allocated.</li>
+            <li><code>array.append(value)</code>: Concatenates the new element straight to the final tail block.</li>
+            <li><code>array.pop(index)</code>: Drops and returns the target asset, sliding all downstream data blocks to the left.</li>
+            <li><code>array.remove(value)</code>: Scans sequentially to drop the *first* matching target instance, triggering structural data shifts.</li>
+        </ul>
+    </details>
+
+    <div class="code-block">
+# The Aliasing Trap and Sequential Value Deletion Shifts
+original_scores = [10, 20, 30, 40]
+aliased_reference = original_scores
+
+# Updates change both references simultaneously
+aliased_reference[0] = 99  # original_scores[0] is now 99
+
+# Index Slippage: Popping index 1 drops 20; shifts 30 down to index 1
+popped_value = original_scores.pop(1)  # Returns 20
+    </div>
+
+    <h3>Lessons 9 & 10: Multi-Step Operational Pipelines</h3>
+    <p>
+        Combining accesses, updates, and removals in a single execution loop requires grouping structural changes within repeatable, modular functions.
+    </p>
+
+    <div class="code-block">
+# Pipeline Sequence: Access, Update, and Tail-Removal
+def transform_pipeline(dataset):
+    initial_capture = dataset[0]
+    dataset[1] = "processed_node"
+    removed_element = dataset.pop()  # Drop tail block
+    return initial_capture, removed_element, dataset
+
+capture, dropped, modified_data = transform_pipeline(["start", "temp", "end"])
+    </div>
+</div>
