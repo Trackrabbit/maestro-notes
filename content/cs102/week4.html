@@ -1,32 +1,34 @@
 <div class="lesson-block">
     <h1>Milestone 1: Search Topologies & Linear Iteration Space</h1>
     <p>
-        In computer science, a <strong>search problem</strong> consists of an active target node situated within an indexed data collection frame. The fundamental mechanics of searching require evaluating structural configurations (sorted vs. unsorted collections) to optimize retrieval performance.
+        In computer science, a <strong>search problem</strong> consists of locating an active target node situated within an indexed data collection frame. The fundamental mechanics of searching require evaluating structural configurations (sorted vs. unsorted collections) to optimize traversal efficiency.
     </p>
 
     <h3>Lessons 1 & 2: The Linear Search Paradigm & Target-Collection Mechanics</h3>
     <p>
-        A basic linear search traverses an unsorted collection sequentially from left to right, comparing each node directly against the target. The operational workload (the comparison step count) is highly dependent on where the element resides within the collection.
+        A basic linear search traverses an unsorted collection sequentially from left to right, comparing each node directly against the target. The operational workload (the comparison step count) scales linearly at an asymptotic rate of $O(n)$, because the loop's execution footprint is directly tied to the target's relative offset inside memory.
     </p>
     
     <div class="output-block font-mono" style="white-space: pre; line-height: 1.4; overflow-x: auto;">
-Target: 7  (Unsorted Collection Data Frame)
+Target Node Search: 7  (Unsorted Data Footprint)
 +---------+---------+---------+---------+---------+
 |   14    |    3    |    8    |    7    |   22    |
 +---------+---------+---------+---------+---------+
   Index 0   Index 1   Index 2   Index 3   Index 4
 
-Step 1: [14] == 7? No  --&gt; Increment Pointer Rightward
-Step 2: [ 3] == 7? No  --&gt; Increment Pointer Rightward
-Step 3: [ 8] == 7? No  --&gt; Increment Pointer Rightward
-Step 4: [ 7] == 7? YES --&gt; Early Exit / Match Found! (Total: 4 Comparisons)
+Step 1: Compare index 0 -> [14] == 7? False --> Increment Pointer Right
+Step 2: Compare index 1 -> [ 3] == 7? False --> Increment Pointer Right
+Step 3: Compare index 2 -> [ 8] == 7? False --> Increment Pointer Right
+Step 4: Compare index 3 -> [ 7] == 7? TRUE  --> Early Exit Protocol Engaged
+Result: Match confirmed at index 3 after exactly 4 total operations.
     </div>
 
     <details class="more-info">
-        <summary>📘 Click to Expand: Structural Target Positions</summary>
+        <summary>📘 Click to Expand: Structural Target Boundaries & Math Proofs</summary>
         <ul>
-            <li><strong>Best Case (First Offset):</strong> Target is located at index 0. Operational burden is exactly 1 step lookup comparison, independent of collection size.</li>
-            <li><strong>Worst Case (Final Offset / Missing):</strong> Target is located at the final tail offset (index $n-1$) or is entirely absent from the collection. The loop must execute exactly $n$ sequential comparisons.</li>
+            <li><strong>Best-Case Complexity — O(1):</strong> The target is positioned precisely at index 0. The search executes exactly 1 comparison and terminates immediately, maintaining scale-insensitive constant performance.</li>
+            <li><strong>Worst-Case Complexity — O(n):</strong> The target is situated at the final tail offset (index $n-1$) or is entirely absent from the array bounds. The loop must exhaustively check every single node, running exactly $n$ operations.</li>
+            <li><strong>Average-Case Complexity — O(n):</strong> Assuming a uniform distribution, the target will be found near the center of the list ($n/2$ steps). Dropping constants under asymptotic guidelines simplifies this directly to linear growth.</li>
         </ul>
     </details>
 
@@ -49,37 +51,44 @@ def linear_search_telemetry(collection, target):
 <div class="lesson-block">
     <h1>Milestone 2: Asymptotic Search Scaling & Binary Splitting</h1>
     <p>
-        As arrays expand to hold massive data sets, linear scanning becomes highly inefficient. Shifting to logarithmic performance profiles requires enforcing pre-sorted memory invariants.
+        As linear datasets expand toward enterprise scales, sequential scanning surfaces as a high-latency hazard. Shifting to sub-linear, logarithmic execution profiles requires enforcing pre-sorted data invariants.
     </p>
 
     <h3>Lessons 3 & 4: Binary Search & The Logarithmic Halving Blueprint</h3>
     <p>
-        The <strong>Binary Search</strong> algorithm requires that the target collection be pre-sorted. By maintaining two pointer offsets (<code>low</code> and <code>high</code>), it calculates a middle division node (<code>mid</code>). If a match is not found immediately, it discards exactly half of the remaining address space, dropping time complexity down to a highly sustainable profile.
+        The <strong>Binary Search</strong> algorithm executes a divide-and-conquer strategy over a pre-sorted array. By maintaining two pointer boundaries (<code>low</code> and <code>high</code>), it calculates a middle division offset (<code>mid</code>). Each unsuccessful comparison discards exactly 50% of the remaining address search space, dropping time complexity down to a highly sustainable profile of $O(\log n)$.
     </p>
     
+    [Image of Binary Search Divide and Conquer Framework]
     <div class="output-block font-mono" style="white-space: pre; line-height: 1.4; overflow-x: auto;">
-Target: 15 (Pre-Sorted Collection Frame, n = 7)
+Target Node Search: 15 (Pre-Sorted Array Frame, n = 7)
 
-INITIAL STEP:
+INITIALIZATION STEP (Pass 1):
 +---+---+---+----+----+----+----+
 | 2 | 5 | 8 | 11 | 15 | 19 | 24 |
 +---+---+---+----+----+----+----+
   ^           ^               ^
- Low         Mid             High     [11] &lt; 15? YES --&gt; Discard Lower Half
+ Low         Mid             High     Compute mid = (0 + 6) // 2 = 3
+                                      Evaluate: array[3] -> 11 < 15? TRUE
+                                      Action: Discard lower half; Low = mid + 1 (4)
 
-EVALUATION STEP:
+HALVING EVALUATION (Pass 2):
 xxxxxxxxxxxxxx+----+----+----+
 x (Discarded) x 15 | 19 | 24 |
 xxxxxxxxxxxxxx+----+----+----+
                 ^    ^    ^
-               Low  Mid  High     [19] &gt; 15? YES --&gt; Discard Upper Half
+               Low  Mid  High     Compute mid = (4 + 6) // 2 = 5
+                                      Evaluate: array[5] -> 19 > 15? TRUE
+                                      Action: Discard upper half; High = mid - 1 (4)
 
-FINAL STEP:
+FINAL TARGET MATCH (Pass 3):
 xxxxxxxxxxxxxxxxxx+----+xxxxxxx
 x (Discarded)     x 15 | xxxxx
 xxxxxxxxxxxxxxxxxx+----+xxxxxxx
                     ^
-               Low/Mid/High       [15] == 15? MATCH FOUND! (3 Total Checks)
+               Low/Mid/High           Compute mid = (4 + 4) // 2 = 4
+                                      Evaluate: array[4] -> 15 == 15? TRUE
+                                      Result: Target located in 3 total execution checks.
     </div>
 
     <div class="code-block">
@@ -103,9 +112,9 @@ def binary_search_trace(sorted_data, target):
     return {"index": -1, "executed_steps": steps}
     </div>
 
-    <h3>Lessons 5 & 6: Master Reference Matrix — Linear vs. Logarithmic Performance</h3>
+    <h3>Lessons 5 & 6: Master Reference Matrix — Linear vs. Logarithmic Scalability</h3>
     <p>
-        The architectural decision matrix between linear search ($O(n)$) and binary search ($O(\log n)$) highlights why pre-sorting data is vital for scalable software engineering.
+        The decision matrix between linear search ($O(n)$) and binary search ($O(\log n)$) highlights the massive performance divergence as data footprints cross scaling boundaries.
     </p>
     
     <table>
@@ -141,17 +150,18 @@ def binary_search_trace(sorted_data, target):
 </div>
 
 <div class="lesson-block">
-    <h1>Milestone 3: Sorting Approaches & Composite Data Contracts</h1>
+    <h1>Milestone 3: Quadratic Sorting Topologies & Stability</h1>
     <p>
-        Sorting transitions data from chaotic sets into structured arrays, enabling advanced reporting and clean analytical summaries (e.g., Top-N slicing, medians, and outlier detection).
+        Sorting pipelines transition chaotic chaotic lists into structured arrays, enabling advanced downstream operations such as binary splitting, medians, and multi-key analytics.
     </p>
 
-    <h3>Lessons 7–10: Bubble Sort vs. Insertion Sort Architectures</h3>
+    <h3>Lessons 7 & 8: Bubble Sort Mechanics & Asymptotic Work Proof</h3>
     <p>
-        Classic sorting approaches vary significantly in performance, particularly when handling partially pre-sorted datasets. 
+        <strong>Bubble Sort</strong> operates via continuous neighbor-swapping. It scans the array from left to right, comparing adjacent elements and swapping them if they violate the sorted order. This causes the largest unsorted values to gradually "bubble" rightward toward the tail end of the array.
     </p>
-    
+
     <details class="more-info">
-        <summary>🧐 Click to Expand: Quadratic Sorting Paradigms</summary>
-        <ul>
-            <li><strong>Bubble Sort (Neighbor-Swapping):</strong> Iteratively scans a collection, swapping adjacent pairs if they violate the sorted order. This forces the largest values
+        <summary>🧼 Click to Expand: Mathematical Work Proof of Bubble Sort</summary>
+        <p>
+            In a list of size $n$, Pass 1 performs $n-1$ comparisons, Pass 2 performs $n-2$, scaling down to 1. Summing these operations gives an exact comparison polynomial:
+            $$\text{Total Comparisons} = \frac{n(n - 1)}{2} = \frac{n^2 - n}{2
