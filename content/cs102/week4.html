@@ -9,7 +9,18 @@
         A basic linear search traverses an unsorted collection sequentially from left to right, comparing each node directly against the target. The operational workload (the comparison step count) is highly dependent on where the element resides within the collection.
     </p>
     
-    [Image of Linear Search Sequential Scan Model]
+    <div class="output-block font-mono" style="white-space: pre; line-height: 1.4;">
+Target: 7  (Unsorted Collection)
++---------+---------+---------+---------+---------+
+|   14    |    3    |    8    |    7    |   22    |
++---------+---------+---------+---------+---------+
+  Index 0   Index 1   Index 2   Index 3   Index 4
+
+Step 1: [14] == 7? No  --&gt; Move Right
+Step 2: [ 3] == 7? No  --&gt; Move Right
+Step 3: [ 8] == 7? No  --&gt; Move Right
+Step 4: [ 7] == 7? YES --&gt; Early Exit / Match Found! (4 Comparisons)
+    </div>
 
     <details class="more-info">
         <summary>📘 Click to Expand: Structural Target Positions</summary>
@@ -46,7 +57,30 @@ def linear_search_telemetry(collection, target):
         The <strong>Binary Search</strong> algorithm requires that the target collection be pre-sorted. By maintaining two pointer offsets (<code>low</code> and <code>high</code>), it calculates a middle division node (<code>mid</code>). If a match is not found immediately, it discards exactly half of the remaining address space, dropping time complexity down to a highly sustainable profile.
     </p>
     
-    [Image of Binary Search Divide and Conquer Framework]
+    <div class="output-block font-mono" style="white-space: pre; line-height: 1.4;">
+Target: 15 (Pre-Sorted Collection Frame, n = 7)
+
+INITIAL STEP:
++---+---+---+----+----+----+----+
+| 2 | 5 | 8 | 11 | 15 | 19 | 24 |
++---+---+---+----+----+----+----+
+  ^           ^               ^
+ Low         Mid             High     [11] &lt; 15? YES --&gt; Discard Lower Half
+
+EVALUATION STEP:
+xxxxxxxxxxxxxx+----+----+----+
+x (Discarded) x 15 | 19 | 24 |
+xxxxxxxxxxxxxx+----+----+----+
+                ^    ^    ^
+               Low  Mid  High     [19] &gt; 15? YES --&gt; Discard Upper Half
+
+FINAL STEP:
+xxxxxxxxxxxxxxxxxx+----+xxxxxxx
+x (Discarded)     x 15 | xxxxx
+xxxxxxxxxxxxxxxxxx+----+xxxxxxx
+                    ^
+               Low/Mid/High       [15] == 15? MATCH FOUND! (3 Total Checks)
+    </div>
 
     <div class="code-block">
 # Safe Binary Search Implementation under Asymptotic O(log n) Performance
@@ -55,13 +89,13 @@ def binary_search_trace(sorted_data, target):
     high = len(sorted_data) - 1
     steps = 0
     
-    while low <= high:
+    while low &lt;= high:
         mid = (low + high) // 2
         steps += 1  # Track each mid-point comparison step
         
         if sorted_data[mid] == target:
             return {"index": mid, "executed_steps": steps}
-        elif sorted_data[mid] < target:
+        elif sorted_data[mid] &lt; target:
             low = mid + 1  # Discard lower half of iteration frame
         else:
             high = mid - 1  # Discard upper half of iteration frame
@@ -133,7 +167,7 @@ def insertion_sort_isolated(nums):
         key = nums_copy[i]
         j = i - 1
         # Inner Loop: Slide elements rightward to make room for the key
-        while j >= 0 and key &lt; nums_copy[j]:
+        while j &gt;= 0 and key &lt; nums_copy[j]:
             nums_copy[j + 1] = nums_copy[j]
             j -= 1
         nums_copy[j + 1] = key
